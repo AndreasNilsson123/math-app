@@ -10,10 +10,10 @@ const nrOfTasks = 10;
 let taskNumber = 0;
 let check = false;
 
-const firstLeft = [...Array(nrOfTasks)].map(() => Math.floor(Math.random() * (2)) + 1);
-const secondLeft = [...Array(nrOfTasks)].map(() => Math.floor(Math.random() * (2)) + 4);
-const firstRight = [...Array(nrOfTasks)].map(() => Math.floor(Math.random() * (9)) + 1);
-const secondRight = [...Array(nrOfTasks)].map(() => Math.floor(Math.random() * (9)) + 1);
+const firstLeft = [...Array(nrOfTasks)].map(() => Math.floor(Math.random() * (4)) + 1);
+const secondLeft = [...Array(nrOfTasks)].map(() => Math.floor(Math.random() * (3)) + 4);
+const firstRight = [...Array(nrOfTasks)].map(() => Math.floor(Math.random() * (4)) + 1);
+const secondRight = [...Array(nrOfTasks)].map(() => Math.floor(Math.random() * (3)) + 1);
 
 export default function Easy() {
     const [flip, setFlip] = useState(false);
@@ -71,7 +71,7 @@ export default function Easy() {
 
     return (
         <>
-            <h1><center>Klossar</center></h1>
+            <h1><center>Division</center></h1>
 
             <ButtonGroup variant="contained" color="primary">
                 <Button onClick={() => checkAnswer("greater")}>&gt;</Button>
