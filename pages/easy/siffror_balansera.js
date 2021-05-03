@@ -126,7 +126,7 @@ export default function Easy() {
     return (
         <>
             <h1><center>Siffror</center></h1>
-
+            <h4>Balansera vågen</h4>
             <center>
                 <ButtonGroup variant="contained" color="primary" size="large">
                     <Button onClick={() => checkNumber(0)}>0</Button>
