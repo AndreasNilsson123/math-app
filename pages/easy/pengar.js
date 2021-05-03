@@ -21,14 +21,6 @@ const numTwentyRight = [...Array(nrOfTasks)].map(() => Math.floor(Math.random() 
 let taskNumber = 0;
 let check = false;
 
-numFiveLeft[taskNumber] = 1;
-numTwentyLeft[taskNumber] = 1;
-numTenLeft[taskNumber] = 2;
-
-numFiveRight[taskNumber] = 2;
-numTwentyRight[taskNumber] = 2;
-numTenRight[taskNumber] = 1;
-
 export default function Easy() {
   const [flip, setFlip] = useState(false);
   const [correct, setCorrect] = useState(null);
