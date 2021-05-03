@@ -14,9 +14,6 @@ let secondLeft = [...Array(nrOfTasks)].map(() => Math.floor(Math.random() * (9))
 let firstRight = [...Array(nrOfTasks)].map(() => Math.floor(Math.random() * (9)) + 1);
 let secondRight = [...Array(nrOfTasks)].map(() => Math.floor(Math.random() * (9)) + 1);
 
-firstLeft[taskNumber] = 1;
-firstRight[taskNumber] = 9;
-
 /* ---    Manipulate values so addition can work    --- */
 const fixSides = () => {
     if (secondLeft[taskNumber].length === 0) {
@@ -41,7 +38,6 @@ const fixSides = () => {
 /* ---    Randomize side to be emmpty      --- */
 const randomSide = () => {
     let randomNumber = Math.floor(Math.random() * (2));
-    console.log(randomNumber);
     randomNumber = 0;
     if (randomNumber === 0) {
         secondLeft[taskNumber] = [];
@@ -57,7 +53,6 @@ fixSides();
 export default function Easy() {
     const [flip, setFlip] = useState(false);
     const [correct, setCorrect] = useState(null);
-
 
     /* ---    Check Number given by the buttons with checkAnswer    --- */
     const checkNumber = (number) => {
@@ -88,6 +83,7 @@ export default function Easy() {
             setCorrect(correct);
             setFlip(less ? "right" : greater ? "left" : false)
         } else {
+            choiceWarning = true;
             alert("Du har redan valt ett alternativ");
         }
     }
@@ -165,8 +161,9 @@ export default function Easy() {
                 </Alert>
             }
 
-            <br />
-
+            {correct == null &&
+                <br />
+            }
 
             <div>
                 <Link href="/">
