@@ -19,6 +19,10 @@ export default function EasyLevels() {
                 <Button variant="contained" color="primary">Siffror</Button>
             </Link>
 
+            <Link href="easy/siffror_balansera">
+                <Button variant="contained" color="primary">Siffror balansera</Button>
+            </Link>
+
             <div>
                 <Link href="/">
                     <Button>Tillbaka</Button>
