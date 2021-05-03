@@ -126,7 +126,7 @@ export default function Easy() {
     return (
         <>
             <h1><center>Siffror</center></h1>
-            <h4>Balansera vågen</h4>
+            <h4><center>Balansera vågen!</center></h4>
             <center>
                 <ButtonGroup variant="contained" color="primary" size="large">
                     <Button onClick={() => checkNumber(0)}>0</Button>
@@ -141,14 +141,6 @@ export default function Easy() {
                     <Button onClick={() => checkNumber(9)}>9</Button>
                 </ButtonGroup>
             </center>
-            <br />
-
-            {correct != null &&
-                <Alert severity={correct ? "success" : "info"}>
-                    {correct ? "Rätt svar!" : "Tyvärr, fel svar."}
-                </Alert>
-            }
-
 
             <br />
 
@@ -164,6 +156,14 @@ export default function Easy() {
             <br />
 
             <LinearProgress variant="determinate" value={(taskNumber + 1) / nrOfTasks * 100} />
+
+            <br />
+
+            {correct != null &&
+                <Alert severity={correct ? "success" : "info"}>
+                    {correct ? "Rätt svar!" : "Tyvärr, fel svar."}
+                </Alert>
+            }
 
             <br />
 
