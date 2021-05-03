@@ -107,6 +107,7 @@ export default function Easy() {
           setCorrect(null);
           setFlip(false);
           taskNumber = 0;
+          check = false;
         }}>
           Nollställ
         </Button>

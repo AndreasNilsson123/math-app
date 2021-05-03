@@ -113,7 +113,7 @@ export default function Easy() {
                 <Button onClick={() => {
                     setCorrect(null);
                     setFlip(false);
-                    taskNumber = 0;
+                    resetValues();
                 }}>
                     Nollställ
         </Button>

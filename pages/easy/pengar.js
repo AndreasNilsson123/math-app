@@ -21,6 +21,14 @@ const numTwentyRight = [...Array(nrOfTasks)].map(() => Math.floor(Math.random() 
 let taskNumber = 0;
 let check = false;
 
+numFiveLeft[taskNumber] = 1;
+numTwentyLeft[taskNumber] = 1;
+numTenLeft[taskNumber] = 2;
+
+numFiveRight[taskNumber] = 2;
+numTwentyRight[taskNumber] = 2;
+numTenRight[taskNumber] = 1;
+
 export default function Easy() {
   const [flip, setFlip] = useState(false);
   const [correct, setCorrect] = useState(null);
@@ -66,6 +74,13 @@ export default function Easy() {
     }
   }
 
+  const resetValues = () => {
+    setCorrect(null);
+    setFlip(false);
+    taskNumber = 0;
+    check = false;
+  }
+
   return (
     <>
       <h1>Pengar</h1>
@@ -81,25 +96,25 @@ export default function Easy() {
       <Seesaw flip={flip}>
         <Seesaw.Left>
           {times(numTwentyLeft[taskNumber])
-            .map((i) => <div key={i}><Image src="/tjugolapp.png" layout="fixed" width={75} height={45} /></div>)}
+            .map((i) => <div key={i}><Image src="/tjugolapp.jpg" layout="fixed" width={75} height={45} alt="Tjugolapp" quality = {25}/></div>)}
           {times(numTenLeft[taskNumber])
-            .map((i) => <div key={i}><Image src="/tiokrona.jpg" layout="fixed" width={35} height={35} /></div>)}
+            .map((i) => <div key={i}><Image src="/tiokrona.jpg" layout="fixed" width={35} height={35} alt="Tiokrona" quality = {25}/></div>)}
           {times(numFiveLeft[taskNumber])
-            .map((i) => <div key={i}><Image src="/fem_krona.png" layout="fixed" width={40} height={40} /></div>)}
+            .map((i) => <div key={i}><Image src="/fem_krona.png" layout="fixed" width={40} height={40} alt="Femkrona" quality = {25}/></div>)}
         </Seesaw.Left>
         <Seesaw.Right>
           {times(numTwentyRight[taskNumber])
-            .map((i) => <div key={i}><Image src="/tjugolapp.png" layout="fixed" width={75} height={45} /></div>)}
+            .map((i) => <div key={i}><Image src="/tjugolapp.jpg" layout="fixed" width={75} height={45} alt="Tjuolapp" quality = {25}/></div>)}
           {times(numTenRight[taskNumber])
-            .map((i) => <div key={i}><Image src="/tiokrona.jpg" layout="fixed" width={35} height={35} /></div>)}
+            .map((i) => <div key={i}><Image src="/tiokrona.jpg" layout="fixed" width={35} height={35} alt="Tiokrona" quality = {25}/></div>)}
           {times(numFiveRight[taskNumber])
-            .map((i) => <div key={i}><Image src="/fem_krona.png" layout="fixed" width={40} height={40} /></div>)}
+            .map((i) => <div key={i}><Image src="/fem_krona.png" layout="fixed" width={40} height={40} alt="Femkrona" quality = {25}/></div>)}
         </Seesaw.Right>
       </Seesaw>
 
       <br />
 
-      <LinearProgress variant="determinate" value={(taskNumber+1)/nrOfTasks * 100} />
+      <LinearProgress variant="determinate" value={(taskNumber + 1) / nrOfTasks * 100} />
 
       <br />
 
@@ -116,12 +131,7 @@ export default function Easy() {
           <Button>Tillbaka</Button>
         </Link>
 
-        <Button onClick={() => {
-          setCorrect(null);
-          setFlip(false);
-        }}>
-          Nollställ
-        </Button>
+        <Button onClick={() => resetValues()}>Nollställ</Button>
 
         <Button onClick={() => nextTask()}>Nästa uppgift</Button>
       </div>

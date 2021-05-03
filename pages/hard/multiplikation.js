@@ -65,10 +65,6 @@ export default function Easy() {
         check = false;
     }
 
-    function docWrite(variable) {
-        document.write(variable);
-    }
-
     return (
         <>
             <h1><center>Multiplikation</center></h1>
@@ -114,6 +110,7 @@ export default function Easy() {
                     setCorrect(null);
                     setFlip(false);
                     taskNumber = 0;
+                    check = false;
                 }}>
                     Nollställ
         </Button>
