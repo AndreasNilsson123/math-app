@@ -81,19 +81,19 @@ export default function Easy() {
       <Seesaw flip={flip}>
         <Seesaw.Left>
           {times(numTwentyLeft[taskNumber])
-            .map((i) => <div key={i}><Image src="/tjugolapp.png" width={75} height={45} /></div>)}
+            .map((i) => <div key={i}><Image src="/tjugolapp.png" layout="fixed" width={75} height={45} /></div>)}
           {times(numTenLeft[taskNumber])
-            .map((i) => <div key={i}><Image src="/tiokrona.jpg" width={45} height={35} /></div>)}
+            .map((i) => <div key={i}><Image src="/tiokrona.jpg" layout="fixed" width={35} height={35} /></div>)}
           {times(numFiveLeft[taskNumber])
-            .map((i) => <div key={i}><Image src="/fem_krona.png" width={40} height={40} /></div>)}
+            .map((i) => <div key={i}><Image src="/fem_krona.png" layout="fixed" width={40} height={40} /></div>)}
         </Seesaw.Left>
         <Seesaw.Right>
           {times(numTwentyRight[taskNumber])
-            .map((i) => <div key={i}><Image src="/tjugolapp.png" width={75} height={45} /></div>)}
+            .map((i) => <div key={i}><Image src="/tjugolapp.png" layout="fixed" width={75} height={45} /></div>)}
           {times(numTenRight[taskNumber])
-            .map((i) => <div key={i}><Image src="/tiokrona.jpg" width={45} height={35} /></div>)}
+            .map((i) => <div key={i}><Image src="/tiokrona.jpg" layout="fixed" width={35} height={35} /></div>)}
           {times(numFiveRight[taskNumber])
-            .map((i) => <div key={i}><Image src="/fem_krona.png" width={40} height={40} /></div>)}
+            .map((i) => <div key={i}><Image src="/fem_krona.png" layout="fixed" width={40} height={40} /></div>)}
         </Seesaw.Right>
       </Seesaw>
 

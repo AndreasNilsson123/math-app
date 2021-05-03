@@ -66,6 +66,7 @@
 .side.rightSide {
     left: calc(40% + 15%);
     top: -1.5%;
+    position: relative !important;
     justify-content: flex-end;
     grid-gap: 8px 0px;
 }
