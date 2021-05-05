@@ -4,7 +4,6 @@ import times from "lodash/times";
 import Link from "next/link";
 import { useState } from "react";
 import Seesaw from "../components/Seesaw";
-import Image from "next/image";
 
 //[...Array(nrOfTasks)].map(() => Math.floor(Math.random() * (9)) + 1)
 const nrOfTasks = 10;
@@ -92,19 +91,19 @@ export default function Easy() {
       <Seesaw flip={flip}>
         <Seesaw.Left>
           {times(numTwentyLeft[taskNumber])
-            .map((i) => <div key={i}><Image src="/tjugolapp.jpg" layout="fixed" width={75} height={45} alt="Tjugolapp" quality={25} /></div>)}
+            .map((i) => <div key={i}><img src="/tjugolapp.jpg" width={75} height={45} alt="Tjugolapp"/></div>)}
           {times(numTenLeft[taskNumber])
-            .map((i) => <div key={i}><Image src="/tiokrona.jpg" layout="fixed" width={35} height={35} alt="Tiokrona" quality={25} /></div>)}
+            .map((i) => <div key={i}><img src="/tiokrona.jpg" width={35} height={35} alt="Tiokrona"/></div>)}
           {times(numFiveLeft[taskNumber])
-            .map((i) => <div key={i}><Image src="/fem_krona.png" layout="fixed" width={40} height={40} alt="Femkrona" quality={25} /></div>)}
+            .map((i) => <div key={i}><img src="/fem_krona.png" width={40} height={40} alt="Femkrona"/></div>)}
         </Seesaw.Left>
         <Seesaw.Right>
           {times(numTwentyRight[taskNumber])
-            .map((i) => <div key={i}><Image src="/tjugolapp.jpg" layout="fixed" width={75} height={45} alt="Tjuolapp" quality={25} /></div>)}
+            .map((i) => <div key={i}><img src="/tjugolapp.jpg" width={75} height={45} alt="Tjugolapp"/></div>)}
           {times(numTenRight[taskNumber])
-            .map((i) => <div key={i}><Image src="/tiokrona.jpg" layout="fixed" width={35} height={35} alt="Tiokrona" quality={25} /></div>)}
+            .map((i) => <div key={i}><img src="/tiokrona.jpg" width={35} height={35} alt="Tiokrona"/></div>)}
           {times(numFiveRight[taskNumber])
-            .map((i) => <div key={i}><Image src="/fem_krona.png" layout="fixed" width={40} height={40} alt="Femkrona" quality={25} /></div>)}
+            .map((i) => <div key={i}><img src="/fem_krona.png" width={40} height={40} alt="Femkrona"/></div>)}
         </Seesaw.Right>
       </Seesaw>
 
