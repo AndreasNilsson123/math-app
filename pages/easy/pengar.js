@@ -7,13 +7,14 @@ import Seesaw from "../components/Seesaw";
 import Image from "next/image";
 
 //[...Array(nrOfTasks)].map(() => Math.floor(Math.random() * (9)) + 1)
-const nrOfTasks = 5;
+const nrOfTasks = 10;
 
-const numFiveLeft = [...Array(nrOfTasks)].map(() => Math.floor(Math.random() * (2)) + 1);
-const numFiveRight = [...Array(nrOfTasks)].map(() => Math.floor(Math.random() * (2)) + 1);
 
-const numTenLeft = [...Array(nrOfTasks)].map(() => Math.floor(Math.random() * (2)) + 1);
-const numTenRight = [...Array(nrOfTasks)].map(() => Math.floor(Math.random() * (2)) + 1);
+const numFiveLeft = [...Array(nrOfTasks)].map(() => Math.floor(Math.random() * (3)) + 1);
+const numFiveRight = [...Array(nrOfTasks)].map(() => Math.floor(Math.random() * (3)) + 1);
+
+const numTenLeft = [...Array(nrOfTasks)].map(() => Math.floor(Math.random() * (3)) + 1);
+const numTenRight = [...Array(nrOfTasks)].map(() => Math.floor(Math.random() * (3)) + 1);
 
 const numTwentyLeft = [...Array(nrOfTasks)].map(() => Math.floor(Math.random() * (2)) + 1);
 const numTwentyRight = [...Array(nrOfTasks)].map(() => Math.floor(Math.random() * (2)) + 1);
@@ -67,11 +68,14 @@ export default function Easy() {
   }
 
   const resetValues = () => {
-    setCorrect(null);
-    setFlip(false);
     taskNumber = 0;
     check = false;
+}
+
+  const restartGame = () => {
+    location.reload();
   }
+
 
   return (
     <>
@@ -88,19 +92,19 @@ export default function Easy() {
       <Seesaw flip={flip}>
         <Seesaw.Left>
           {times(numTwentyLeft[taskNumber])
-            .map((i) => <div key={i}><Image src="/tjugolapp.jpg" layout="fixed" width={75} height={45} alt="Tjugolapp" quality = {25}/></div>)}
+            .map((i) => <div key={i}><Image src="/tjugolapp.jpg" layout="fixed" width={75} height={45} alt="Tjugolapp" quality={25} /></div>)}
           {times(numTenLeft[taskNumber])
-            .map((i) => <div key={i}><Image src="/tiokrona.jpg" layout="fixed" width={35} height={35} alt="Tiokrona" quality = {25}/></div>)}
+            .map((i) => <div key={i}><Image src="/tiokrona.jpg" layout="fixed" width={35} height={35} alt="Tiokrona" quality={25} /></div>)}
           {times(numFiveLeft[taskNumber])
-            .map((i) => <div key={i}><Image src="/fem_krona.png" layout="fixed" width={40} height={40} alt="Femkrona" quality = {25}/></div>)}
+            .map((i) => <div key={i}><Image src="/fem_krona.png" layout="fixed" width={40} height={40} alt="Femkrona" quality={25} /></div>)}
         </Seesaw.Left>
         <Seesaw.Right>
           {times(numTwentyRight[taskNumber])
-            .map((i) => <div key={i}><Image src="/tjugolapp.jpg" layout="fixed" width={75} height={45} alt="Tjuolapp" quality = {25}/></div>)}
+            .map((i) => <div key={i}><Image src="/tjugolapp.jpg" layout="fixed" width={75} height={45} alt="Tjuolapp" quality={25} /></div>)}
           {times(numTenRight[taskNumber])
-            .map((i) => <div key={i}><Image src="/tiokrona.jpg" layout="fixed" width={35} height={35} alt="Tiokrona" quality = {25}/></div>)}
+            .map((i) => <div key={i}><Image src="/tiokrona.jpg" layout="fixed" width={35} height={35} alt="Tiokrona" quality={25} /></div>)}
           {times(numFiveRight[taskNumber])
-            .map((i) => <div key={i}><Image src="/fem_krona.png" layout="fixed" width={40} height={40} alt="Femkrona" quality = {25}/></div>)}
+            .map((i) => <div key={i}><Image src="/fem_krona.png" layout="fixed" width={40} height={40} alt="Femkrona" quality={25} /></div>)}
         </Seesaw.Right>
       </Seesaw>
 
@@ -120,10 +124,10 @@ export default function Easy() {
 
       <div>
         <Link href="/">
-          <Button>Tillbaka</Button>
+          <Button onClick={() => resetValues()}>Tillbaka</Button>
         </Link>
 
-        <Button onClick={() => resetValues()}>Nollställ</Button>
+        <Button onClick={() => restartGame()}>Nollställ</Button>
 
         <Button onClick={() => nextTask()}>Nästa uppgift</Button>
       </div>

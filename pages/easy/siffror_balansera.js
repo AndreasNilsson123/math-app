@@ -117,6 +117,11 @@ export default function Easy() {
         check = false;
     }
 
+    /* ---    Restart game when pressing "Nollställ"     --- */
+    const restartGame = () => {
+        location.reload();
+    }
+
 
 
     return (
@@ -170,15 +175,7 @@ export default function Easy() {
                     <Button onClick={() => resetValues()}>Tillbaka</Button>
                 </Link>
 
-                <Button onClick={() => {
-                    setCorrect(null);
-                    setFlip(false);
-                    taskNumber = 0;
-                    check = false;
-                    randomSide();
-                }}>
-                    Nollställ
-        </Button>
+                <Button onClick={() => restartGame()}>Nollställ</Button>
 
                 <Button onClick={() => nextTask()}>Nästa uppgift</Button>
             </div>

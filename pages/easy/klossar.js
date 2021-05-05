@@ -60,9 +60,14 @@ export default function Easy() {
     check = false;
   }
 
+  const restartGame = () => {
+    location.reload();
+  }
+
   return (
     <>
-      <h1><center>Klossar</center></h1>
+    <center>
+      <h1>Klossar</h1>
 
       <ButtonGroup variant="contained" color="primary">
         <Button onClick={() => checkAnswer("greater")}>&gt;</Button>
@@ -94,6 +99,7 @@ export default function Easy() {
           {correct ? "Rätt svar!" : "Tyvärr, fel svar."}
         </Alert>
       }
+      </center>
 
       <br />
 
@@ -103,14 +109,7 @@ export default function Easy() {
           <Button onClick={() => resetValues()}>Tillbaka</Button>
         </Link>
 
-        <Button onClick={() => {
-          setCorrect(null);
-          setFlip(false);
-          taskNumber = 0;
-          check = false;
-        }}>
-          Nollställ
-        </Button>
+        <Button onClick={() => restartGame()}>Nollställ</Button>
 
         <Button onClick={() => nextTask()}>Nästa uppgift</Button>
       </div>
