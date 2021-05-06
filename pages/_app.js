@@ -16,7 +16,7 @@ function MyApp({ Component, pageProps }) {
       </Head>
 
       <main>
-        <Container maxWidth="sm">
+        <Container classes="root" maxWidth="sm">
 
           <Component {...pageProps} />
         </Container>
