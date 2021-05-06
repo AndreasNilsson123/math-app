@@ -1,7 +1,7 @@
 import { Button, ButtonGroup } from "@material-ui/core";
 import Link from "next/link";
 import { useState } from "react";
-import Seesaw from "../components/Seesaw";
+import Seesaw from "./components/Seesaw";
 
 export default function Hard() {
   const [flip, setFlip] = useState(false);
