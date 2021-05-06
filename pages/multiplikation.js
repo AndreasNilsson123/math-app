@@ -2,7 +2,7 @@ import { Button, ButtonGroup, LinearProgress } from "@material-ui/core";
 import { Alert } from "@material-ui/lab";
 import Link from "next/link";
 import { useState } from "react";
-import Seesaw from "../components/Seesaw";
+import Seesaw from "./components/Seesaw";
 
 
 
@@ -13,14 +13,14 @@ let check = false;
 const firstLeft = [...Array(nrOfTasks)].map(() => Math.floor(Math.random() * (4)) + 1);
 const secondLeft = [...Array(nrOfTasks)].map(() => Math.floor(Math.random() * (3)) + 4);
 const firstRight = [...Array(nrOfTasks)].map(() => Math.floor(Math.random() * (4)) + 1);
-const secondRight = [...Array(nrOfTasks)].map(() => Math.floor(Math.random() * (3)) + 1);
+const secondRight = [...Array(nrOfTasks)].map(() => Math.floor(Math.random() * (3)) + 4);
 
 export default function Easy() {
     const [flip, setFlip] = useState(false);
     const [correct, setCorrect] = useState(null);
 
-    let totLeft = firstLeft[taskNumber] / secondLeft[taskNumber];
-    let totRight = firstRight[taskNumber] / secondRight[taskNumber];
+    let totLeft = firstLeft[taskNumber] * secondLeft[taskNumber];
+    let totRight = firstRight[taskNumber] * secondRight[taskNumber];
 
     const checkAnswer = (answer) => {
         if (check === false) {
@@ -65,13 +65,9 @@ export default function Easy() {
         check = false;
     }
 
-    function docWrite(variable) {
-        document.write(variable);
-    }
-
     return (
         <>
-            <h1><center>Division</center></h1>
+            <h1><center>Multiplikation</center></h1>
 
             <ButtonGroup variant="contained" color="primary">
                 <Button onClick={() => checkAnswer("greater")}>&gt;</Button>
@@ -83,10 +79,10 @@ export default function Easy() {
 
             <Seesaw flip={flip}>
                 <Seesaw.Left>
-                    <div>{firstLeft[taskNumber]}/{secondLeft[taskNumber]}</div>
+                    <div>{firstLeft[taskNumber]}*{secondLeft[taskNumber]}</div>
                 </Seesaw.Left>
                 <Seesaw.Right>
-                    <div>{firstRight[taskNumber]}/{secondRight[taskNumber]}</div>
+                    <div>{firstRight[taskNumber]}*{secondRight[taskNumber]}</div>
                 </Seesaw.Right>
             </Seesaw>
 

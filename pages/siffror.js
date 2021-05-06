@@ -2,7 +2,7 @@ import { Button, ButtonGroup, LinearProgress } from "@material-ui/core";
 import { Alert } from "@material-ui/lab";
 import Link from "next/link";
 import { useState } from "react";
-import Seesaw from "../components/Seesaw";
+import Seesaw from "./components/Seesaw";
 
 
 

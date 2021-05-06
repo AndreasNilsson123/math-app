@@ -2,10 +2,10 @@ import { Button, ButtonGroup, LinearProgress } from "@material-ui/core";
 import { Alert } from "@material-ui/lab";
 import Link from "next/link";
 import { useState } from "react";
-import Seesaw from "../components/Seesaw";
+import Seesaw from "./components/Seesaw";
 
 //constants
-const nrOfTasks = 4;
+const nrOfTasks = 10;
 let taskNumber = 0;
 let check = false;
 
@@ -26,7 +26,7 @@ const fixSides = () => {
         }
     } else {
         if (firstRight[taskNumber] > firstLeft[taskNumber] + secondLeft[taskNumber]) {
-            firstLeft[taskNumber] = Math.floor(Math.random() * (firstLeft[taskNumber] + secondLeft[taskNumber] - 1) + 1);
+            firstRight[taskNumber] = Math.floor(Math.random() * (firstLeft[taskNumber] + secondLeft[taskNumber] - 1) + 1);
         }
         if (firstRight[taskNumber] + 9 < firstLeft[taskNumber] + secondLeft[taskNumber]) {
             firstLeft[taskNumber] = Math.floor(Math.random() * Math.trunc((firstRight[taskNumber] + 9) / 2) + 1);
@@ -38,7 +38,6 @@ const fixSides = () => {
 /* ---    Randomize side to be emmpty      --- */
 const randomSide = () => {
     let randomNumber = Math.floor(Math.random() * (2));
-    randomNumber = 0;
     if (randomNumber === 0) {
         secondLeft[taskNumber] = [];
     } else {
@@ -115,6 +114,7 @@ export default function Easy() {
     const resetValues = () => {
         taskNumber = 0;
         check = false;
+        randomSide();
     }
 
     /* ---    Restart game when pressing "Nollställ"     --- */
@@ -126,6 +126,7 @@ export default function Easy() {
 
     return (
         <>
+            <center>
             <h1><center>Siffror</center></h1>
             <h4><center>Balansera vågen!</center></h4>
             <center>
@@ -169,6 +170,7 @@ export default function Easy() {
             {correct == null &&
                 <br />
             }
+            </center>
 
             <div>
                 <Link href="/">

@@ -3,7 +3,7 @@ import { Alert } from "@material-ui/lab";
 import times from "lodash/times";
 import Link from "next/link";
 import { useState } from "react";
-import Seesaw from "../components/Seesaw";
+import Seesaw from "./components/Seesaw";
 
 
 
