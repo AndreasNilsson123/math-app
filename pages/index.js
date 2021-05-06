@@ -71,6 +71,11 @@ export default function Home() {
         <Button variant="contained" color="secondary" size = "large" fullWidth = {true}>4.Divison</Button>
       </Link>
 
+      <h2>Custom</h2>
+      <Link href="/custom">
+        <Button variant="contained" color="primary" size = "large" fullWidth = {true}>5.Gör Egna uppgifter</Button>
+      </Link>
+
     </>
   );
 }
@@ -81,9 +86,6 @@ export default function Home() {
 
 
 
-      <h2>Custom</h2>
-      <Link href="/custom">
-        <Button variant="contained" color="primary" size = "large" fullWidth = {true}>5.Gör Egna uppgifter</Button>
-      </Link>
+
 
 */
