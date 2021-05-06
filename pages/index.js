@@ -1,4 +1,4 @@
-  
+/* 
 import { Button } from "@material-ui/core";
 import Link from "next/link";
 
@@ -20,8 +20,9 @@ export default function Home() {
     </>
   );
 }
+*/
 
-/*import { Button } from "@material-ui/core";
+import { Button } from "@material-ui/core";
 import Link from "next/link";
 import React from "react";
 
@@ -43,6 +44,12 @@ export default function Home() {
         <Button variant="contained" color="primary" size = "large" fullWidth = {true}>1.Pengar</Button>
       </Link>
 
+    </>
+  );
+}
+
+/*
+      
       <h2>Balansera Vågen</h2>
       <Link href="/klossar_balansera">
         <Button variant="contained" color="primary" size = "large" fullWidth = {true}>2.Klossar</Button>
@@ -74,7 +81,5 @@ export default function Home() {
       <Link href="/custom">
         <Button variant="contained" color="primary" size = "large" fullWidth = {true}>5.Gör Egna uppgifter</Button>
       </Link>
-    </>
-  );
-}
+
 */
