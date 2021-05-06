@@ -43,7 +43,7 @@ export default function Home() {
       <Link href="/pengar">
         <Button variant="contained" color="primary" size = "large" fullWidth = {true}>1.Pengar</Button>
       </Link>
-      
+
       <h2>Balansera Vågen</h2>
       <Link href="/klossar_balansera">
         <Button variant="contained" color="primary" size = "large" fullWidth = {true}>2.Klossar</Button>
@@ -54,14 +54,6 @@ export default function Home() {
       <Link href="/pengar_balansera">
         <Button variant="contained" color="primary" size = "large" fullWidth = {true}>2.Pengar</Button>
       </Link>
-
-    </>
-  );
-}
-
-/*
-      
-
 
       <h2>Större, mindre eller lika med</h2>
       <Link href="/multiplikation">
@@ -78,6 +70,16 @@ export default function Home() {
       <Link href="/division_balansera">
         <Button variant="contained" color="secondary" size = "large" fullWidth = {true}>4.Divison</Button>
       </Link>
+
+    </>
+  );
+}
+
+/*
+      
+
+
+
 
       <h2>Custom</h2>
       <Link href="/custom">
