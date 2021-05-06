@@ -48,7 +48,7 @@ export default function Home() {
       </Link>
 
       <h2>Custom</h2>
-      <Link href="/custom ">
+      <Link href="/custom">
         <Button variant="contained" color="primary" size = "large" fullWidth = {true}>5.Gör Egna uppgifter</Button>
       </Link>
     </>
