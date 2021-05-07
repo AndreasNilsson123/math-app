@@ -20,6 +20,7 @@ function MyApp({ Component, pageProps }) {
 
           <Component {...pageProps} />
         </Container>
+
       </main>
 
     </>
