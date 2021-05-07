@@ -27,18 +27,33 @@ const randomSide = () => {
 function choiceBox() {
     let answers = [0, 0, 0]
     let correctAnswerIndex = Math.floor(Math.random() * (3));
+    console.log(Math.floor(Math.random() * (3)),Math.floor(Math.random() * (3)),Math.floor(Math.random() * (3)),Math.floor(Math.random() * (3)),Math.floor(Math.random() * (3)))
     answers[correctAnswerIndex] = Math.abs(firstLeft[taskNumber] + secondLeft[taskNumber] - firstRight[taskNumber] - secondRight[taskNumber]);
     if (correctAnswerIndex === 0) {
         answers[1] = Math.floor(Math.random() * (7)) + 1;
         answers[2] = Math.floor(Math.random() * (7)) + 1;
+        if(answers[1]===answers[0]){
+            answers[1]++;
+        } else if(answers[2]===answers[0]){
+            answers[2]++;
+        }
     } else if (correctAnswerIndex === 1) {
         answers[0] = Math.floor(Math.random() * (7)) + 1;
         answers[2] = Math.floor(Math.random() * (7)) + 1;
+        if(answers[0]===answers[1]){
+            answers[0]++;
+        } else if(answers[2]===answers[1]){
+            answers[2]++;
+        }
     } else {
         answers[0] = Math.floor(Math.random() * (7)) + 1;
         answers[1] = Math.floor(Math.random() * (7)) + 1;
+        if(answers[0]===answers[2]){
+            answers[0]++;
+        } else if(answers[1]===answers[2]){
+            answers[1]++;
+        }
     }
-
     return answers;
 }
 
