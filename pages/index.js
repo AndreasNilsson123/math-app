@@ -36,7 +36,7 @@ export default function Home() {
         <Button variant="contained" color="secondary" size="large" fullWidth={true}>3.Multiplikation</Button>
       </Link>
       <Link href="/division">
-        <Button variant="contained" color="secondary" size="large" fullWidth={true}>3.Divison (Inte klar)</Button>
+        <Button variant="contained" color="secondary" size="large" fullWidth={true}>3.Divison</Button>
       </Link>
 
       <h2>Balansera Vågen</h2>

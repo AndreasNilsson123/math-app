@@ -174,7 +174,7 @@ export default function Easy() {
         <br />
 
         {correct != null &&
-          <Alert severity={correct ? "success" : "info"}>
+          <Alert severity={correct ? "success" : "error"}>
             {correct ? "Rätt svar!" : "Tyvärr, fel svar."}
           </Alert>
         }

@@ -2,6 +2,7 @@ import { Container } from "@material-ui/core";
 import Head from "next/head";
 import "../styles/globals.css";
 import "../styles/klossar.css";
+import "../styles/Home.module.css";
 
 
 function MyApp({ Component, pageProps }) {
@@ -17,7 +18,6 @@ function MyApp({ Component, pageProps }) {
 
       <main>
         <Container maxWidth="sm">
-
           <Component {...pageProps} />
         </Container>
 
