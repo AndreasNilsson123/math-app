@@ -41,10 +41,10 @@ export default function Home() {
 
       <h2>Balansera Vågen</h2>
       <Link href="/multiplikation_balansera">
-        <Button variant="contained" color="secondary" size="large" fullWidth={true}>4.Multiplikation (Inte klar)</Button>
+        <Button variant="contained" color="secondary" size="large" fullWidth={true}>4.Multiplikation</Button>
       </Link>
       <Link href="/division_balansera">
-        <Button variant="contained" color="secondary" size="large" fullWidth={true}>4.Divison (Inte klar)</Button>
+        <Button variant="contained" color="secondary" size="large" fullWidth={true}>4.Divison</Button>
       </Link>
 
       <h2>Custom</h2>
