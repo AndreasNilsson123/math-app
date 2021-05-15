@@ -9,20 +9,53 @@ import Seesaw from "./components/Seesaw";
 const nrOfTasks = 10;
 let taskNumber = 0;
 let check = false;
+var sign;
 
 const firstLeft = [...Array(nrOfTasks)].map(() => Math.floor(Math.random() * (9)) + 1);
 const secondLeft = [...Array(nrOfTasks)].map(() => Math.floor(Math.random() * (9)) + 1);
 const firstRight = [...Array(nrOfTasks)].map(() => Math.floor(Math.random() * (9)) + 1);
 const secondRight = [...Array(nrOfTasks)].map(() => Math.floor(Math.random() * (9)) + 1);
+console.log(firstLeft, secondLeft, firstRight, secondRight);
+
+const fixSides = () => {
+    if (firstLeft[taskNumber] < secondLeft[taskNumber] && sign === "-") {
+        let tempLeft = firstLeft[taskNumber];
+        firstLeft[taskNumber] = secondLeft[taskNumber];
+        secondLeft[taskNumber] = tempLeft
+    }
+    if (firstRight[taskNumber] < secondRight[taskNumber] && sign === "-") {
+        let tempRight = firstRight[taskNumber];
+        firstRight[taskNumber] = secondRight[taskNumber];
+        secondRight[taskNumber] = tempRight;
+    }
+}
+
+const randomSign = () => {
+    let randomNumber = Math.floor(Math.random() * 2);
+    if (randomNumber === 0) {
+        sign = "+";
+    } else {
+        sign = "-";
+    }
+    fixSides();
+}
+randomSign();
 
 export default function Easy() {
     const [flip, setFlip] = useState(false);
     const [correct, setCorrect] = useState(null);
 
-    let totLeft = firstLeft[taskNumber] + secondLeft[taskNumber];
-    let totRight = firstRight[taskNumber] + secondRight[taskNumber];
 
     const checkAnswer = (answer) => {
+        let totLeft, totRight;
+        if(sign === "+") {
+            totLeft = firstLeft[taskNumber] + secondLeft[taskNumber];
+            totRight = firstRight[taskNumber] + secondRight[taskNumber];
+        }else{
+            totLeft = firstLeft[taskNumber] - secondLeft[taskNumber];
+            totRight = firstRight[taskNumber] - secondRight[taskNumber];
+        }
+        console.log(totLeft,totRight);
         if (check === false) {
             check = true;
             const less = totLeft < totRight;
@@ -48,6 +81,7 @@ export default function Easy() {
                 setFlip(false);
                 taskNumber++;
                 check = false;
+                randomSign();
             } else {
                 setCorrect(null);
                 setFlip(false);
@@ -83,10 +117,10 @@ export default function Easy() {
 
             <Seesaw flip={flip}>
                 <Seesaw.Left>
-                    <div>{firstLeft[taskNumber]}+{secondLeft[taskNumber]}</div>
+                    <div>{firstLeft[taskNumber]}{sign}{secondLeft[taskNumber]}</div>
                 </Seesaw.Left>
                 <Seesaw.Right>
-                    <div>{firstRight[taskNumber]}+{secondRight[taskNumber]}</div>
+                    <div>{firstRight[taskNumber]}{sign}{secondRight[taskNumber]}</div>
                 </Seesaw.Right>
             </Seesaw>
 
