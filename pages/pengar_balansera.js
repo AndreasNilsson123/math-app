@@ -1,48 +1,77 @@
 import { Button, ButtonGroup, LinearProgress } from "@material-ui/core";
 import { Alert } from "@material-ui/lab";
 import times from "lodash/times";
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import Seesaw from "./components/Seesaw";
-import Image from "next/image";
 
-//[...Array(nrOfTasks)].map(() => Math.floor(Math.random() * (9)) + 1)
+
 const nrOfTasks = 10;
 
-let numFiveLeft = [...Array(nrOfTasks)].map(() => Math.floor(Math.random() * (3)) + 0);
-let numFiveRight = [...Array(nrOfTasks)].map(() => Math.floor(Math.random() * (3)) + 1);
+// random int array from min (inclusive) to max (exclusive)
+const randInt = (min, max) => Math.floor(Math.random() * (max - min)) + min;
 
-let numTenLeft = [...Array(nrOfTasks)].map(() => Math.floor(Math.random() * (3)) + 0);
-let numTenRight = [...Array(nrOfTasks)].map(() => Math.floor(Math.random() * (3)) + 1);
-
-let numTwentyLeft = [...Array(nrOfTasks)].map(() => Math.floor(Math.random() * (2)) + 0);
-let numTwentyRight = [...Array(nrOfTasks)].map(() => Math.floor(Math.random() * (2)) + 1);
-
-let taskNumber = 0;
-let check = false;
-
-let totLeft = numTenLeft[taskNumber] * 10 + numTwentyLeft[taskNumber] * 20 + numFiveLeft[taskNumber] * 5;
-let totRight = numTenRight[taskNumber] * 10 + numTwentyRight[taskNumber] * 20 + numFiveRight[taskNumber] * 5;
-
-const fixSides = () => {
-    if (totLeft > totRight) {
-        numTwentyLeft[taskNumber] = [...Array(nrOfTasks)].map(() => Math.floor(Math.random() * (numTwentyRight[taskNumber])) + 0);
-        numTenLeft[taskNumber] = [...Array(nrOfTasks)].map(() => Math.floor(Math.random() * (numTenRight[taskNumber])) + 0);
-        numFiveLeft[taskNumber] = [...Array(nrOfTasks)].map(() => Math.floor(Math.random() * (numFiveRight[taskNumber])) + 0);
+const createMoney = ({ five = 0, ten = 0, twenty =  0 } = {}) => ({
+    five,
+    ten,
+    twenty,
+    get sum() {
+        return this.five * 5 + this.ten * 10 + this.twenty * 20
+    },
+    plusFive() {
+        return createMoney({ ...this, five: this.five + 1, });
+    },
+    plusTen() {
+        return createMoney({ ...this, ten: this.ten + 1 });
+    },
+    plusTwenty() {
+        return createMoney({ ...this, twenty: this.twenty + 1 });
     }
+});
+
+const randMoney = (maxSum) => {
+    const money = createMoney();
+
+    if (maxSum < 5) return money;
+
+    const value = [5, 10, 20];
+    const moneyKey = ["five", "ten", "twenty"];
+
+    const maxLoops = 10;
+
+    for (let i = 0; i < maxLoops && money.sum < maxSum; ++i) {
+        const moneyType = randInt(0, 3);
+
+        if (money.sum + value[moneyType] >= maxSum) {
+            continue;
+        }
+
+        if (money.sum > 0 && Math.random() < 0.05) {
+            break;
+        }
+
+        money[moneyKey[moneyType]]++;
+    }
+
+    return money;
 }
 
-fixSides();
+const rightMoney = [...Array(nrOfTasks)].map(() => randMoney(randInt(50, 100)))
 
 export default function Easy() {
     const [flip, setFlip] = useState(false);
     const [correct, setCorrect] = useState(null);
+    const [check, setCheck] = useState(false);
+    const [taskNumber, setTaskNumber] = useState(0);
+
+    const totRight = rightMoney[taskNumber].sum;
+    const [leftMoney, setLeftMoney] = useState(randMoney(totRight));
 
     const checkAnswer = (answer) => {
-        totLeft = numTenLeft[taskNumber] * 10 + numTwentyLeft[taskNumber] * 20 + numFiveLeft[taskNumber] * 5;
-        totRight = numTenRight[taskNumber] * 10 + numTwentyRight[taskNumber] * 20 + numFiveRight[taskNumber] * 5;
-        if (check === false) {
-            check = true;
+        const totLeft = leftMoney.sum;
+
+        if (!check) {
             const less = totLeft < totRight;
             const equal = totLeft === totRight;
             const greater = totLeft > totRight;
@@ -52,6 +81,7 @@ export default function Easy() {
                 equal && answer === "equal" ||
                 greater && answer === "greater";
 
+            setCheck(true);
             setCorrect(correct);
             setFlip(less ? "right" : greater ? "left" : false);
         } else {
@@ -61,41 +91,37 @@ export default function Easy() {
 
     const addMoney = (value) => {
         if (value === "twenty") {
-            numTwentyLeft[taskNumber]++;
+            setLeftMoney(leftMoney.plusTwenty());
         } else if (value === "ten") {
-            numTenLeft[taskNumber]++;
+            setLeftMoney(leftMoney.plusTen());
         } else if (value === "five") {
-            numFiveLeft[taskNumber]++;
+            setLeftMoney(leftMoney.plusFive());
         } else {
-            console.log("Error")
-            alert("Somthing is wrong")
+            console.error('Cannot add other money than "five", "ten" or "twenty"')
         }
     }
 
     const nextTask = () => {
-        if (check === true) {
+        if (check) {
             if (taskNumber < nrOfTasks - 1) {
-                setCorrect(null);
-                setFlip(false);
-                taskNumber++;
-                check = false;
+                setTaskNumber(taskNumber + 1);
             } else {
-                setCorrect(null);
-                setFlip(false);
-                taskNumber = 0;
-                check = false;
+                setTaskNumber(0);
                 alert("Du har gjort alla uppgifter!");
             }
+            setFlip(false);
+            setCorrect(null);
+            setCheck(false);
+            setLeftMoney(randMoney(rightMoney[taskNumber].sum))
         } else {
             alert("Välj ett alternativ först");
         }
-        fixSides();
     }
 
     const resetValues = () => {
-        taskNumber = 0;
-        check = false;
-        fixSides();
+        setTaskNumber(0);
+        setLeftMoney(randMoney(rightMoney[taskNumber].sum))
+        setCheck(false);
     }
 
     const restartGame = () => {
@@ -118,19 +144,19 @@ export default function Easy() {
 
             <Seesaw flip={flip}>
                 <Seesaw.Left>
-                    {times(numTwentyLeft[taskNumber])
+                    {times(leftMoney.twenty)
                         .map((i_1) => <div key={i_1}><Image src="/tjugolapp.jpg" layout="fixed" width={75} height={45} alt="Tjugolapp" quality={50} /></div>)}
-                    {times(numTenLeft[taskNumber])
+                    {times(leftMoney.ten)
                         .map((i_2) => <div key={i_2}><Image src="/tiokrona.png" layout="fixed" width={35} height={35} alt="Tiokrona" quality={50} /></div>)}
-                    {times(numFiveLeft[taskNumber])
+                    {times(leftMoney.five)
                         .map((i_3) => <div key={i_3}><Image src="/femkrona.png" layout="fixed" width={40} height={40} alt="Femkrona" quality={50} /></div>)}
                 </Seesaw.Left>
                 <Seesaw.Right>
-                    {times(numTwentyRight[taskNumber])
+                    {times(rightMoney[taskNumber].twenty)
                         .map((i_4) => <div key={i_4}><Image src="/tjugolapp.jpg" layout="fixed" width={75} height={45} alt="Tjugolapp" quality={50} /></div>)}
-                    {times(numTenRight[taskNumber])
+                    {times(rightMoney[taskNumber].ten)
                         .map((i_5) => <div key={i_5}><Image src="/tiokrona.png" layout="fixed" width={35} height={35} alt="Tiokrona" quality={50} /></div>)}
-                    {times(numFiveRight[taskNumber])
+                    {times(rightMoney[taskNumber].five)
                         .map((i_6) => <div key={i_6}><Image src="/femkrona.png" layout="fixed" width={40} height={40} alt="Femkrona" quality={50} /></div>)}
                 </Seesaw.Right>
             </Seesaw>
