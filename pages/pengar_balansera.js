@@ -9,7 +9,7 @@ import Seesaw from "./components/Seesaw";
 
 const nrOfTasks = 10;
 
-// random int array from min (inclusive) to max (exclusive)
+// random int from min (inclusive) to max (exclusive)
 const randInt = (min, max) => Math.floor(Math.random() * (max - min)) + min;
 
 const createMoney = ({ five = 0, ten = 0, twenty =  0 } = {}) => ({
