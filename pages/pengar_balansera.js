@@ -1,86 +1,48 @@
 import { Button, ButtonGroup, LinearProgress } from "@material-ui/core";
 import { Alert } from "@material-ui/lab";
+import times from "lodash/times";
 import Link from "next/link";
 import { useState } from "react";
 import Seesaw from "./components/Seesaw";
-import times from "lodash/times";
+import Image from "next/image";
 
-//constants
+//[...Array(nrOfTasks)].map(() => Math.floor(Math.random() * (9)) + 1)
 const nrOfTasks = 10;
+
+let numFiveLeft = [...Array(nrOfTasks)].map(() => Math.floor(Math.random() * (3)) + 0);
+let numFiveRight = [...Array(nrOfTasks)].map(() => Math.floor(Math.random() * (3)) + 1);
+
+let numTenLeft = [...Array(nrOfTasks)].map(() => Math.floor(Math.random() * (3)) + 0);
+let numTenRight = [...Array(nrOfTasks)].map(() => Math.floor(Math.random() * (3)) + 1);
+
+let numTwentyLeft = [...Array(nrOfTasks)].map(() => Math.floor(Math.random() * (2)) + 0);
+let numTwentyRight = [...Array(nrOfTasks)].map(() => Math.floor(Math.random() * (2)) + 1);
+
 let taskNumber = 0;
 let check = false;
 
-let firstLeft = [...Array(nrOfTasks)].map(() => Math.floor(Math.random() * (5)) + 1);
-let secondLeft = [...Array(nrOfTasks)].map(() => Math.floor(Math.random() * (5)) + 1);
-let firstRight = [...Array(nrOfTasks)].map(() => Math.floor(Math.random() * (5)) + 1);
-let secondRight = [...Array(nrOfTasks)].map(() => Math.floor(Math.random() * (5)) + 1);
+let totLeft = numTenLeft[taskNumber] * 10 + numTwentyLeft[taskNumber] * 20 + numFiveLeft[taskNumber] * 5;
+let totRight = numTenRight[taskNumber] * 10 + numTwentyRight[taskNumber] * 20 + numFiveRight[taskNumber] * 5;
 
-/* ---    Randomize side to be emmpty      --- */
-const randomSide = () => {
-    secondLeft[taskNumber] = [];
-
-    if(firstLeft[taskNumber] >= firstRight[taskNumber] + secondRight[taskNumber]){
-        firstLeft[taskNumber] = Math.floor(Math.random() * (firstRight[taskNumber]+secondRight[taskNumber]-1)) + 1;
+const fixSides = () => {
+    if (totLeft > totRight) {
+        numTwentyLeft[taskNumber] = [...Array(nrOfTasks)].map(() => Math.floor(Math.random() * (numTwentyRight[taskNumber])) + 0);
+        numTenLeft[taskNumber] = [...Array(nrOfTasks)].map(() => Math.floor(Math.random() * (numTenRight[taskNumber])) + 0);
+        numFiveLeft[taskNumber] = [...Array(nrOfTasks)].map(() => Math.floor(Math.random() * (numFiveRight[taskNumber])) + 0);
     }
 }
-/* --- Choice setup --- */
-function choiceBox() {
-    let answers = [0, 0, 0]
-    let correctAnswerIndex = Math.floor(Math.random() * (3));
-    answers[correctAnswerIndex] = Math.abs(firstLeft[taskNumber] + secondLeft[taskNumber] - firstRight[taskNumber] - secondRight[taskNumber]);
-    if (correctAnswerIndex === 0) {
-        answers[1] = Math.floor(Math.random() * (7)) + 1;
-        answers[2] = Math.floor(Math.random() * (7)) + 1;
-        if(answers[1]===answers[0]){
-            answers[1]++;
-        } else if(answers[2]===answers[0]){
-            answers[2]++;
-        }
-    } else if (correctAnswerIndex === 1) {
-        answers[0] = Math.floor(Math.random() * (7)) + 1;
-        answers[2] = Math.floor(Math.random() * (7)) + 1;
-        if(answers[0]===answers[1]){
-            answers[0]++;
-        } else if(answers[2]===answers[1]){
-            answers[2]++;
-        }
-    } else {
-        answers[0] = Math.floor(Math.random() * (7)) + 1;
-        answers[1] = Math.floor(Math.random() * (7)) + 1;
-        if(answers[0]===answers[2]){
-            answers[0]++;
-        } else if(answers[1]===answers[2]){
-            answers[1]++;
-        }
-    }
-    return answers;
-}
 
-
-randomSide();
-let answer = choiceBox();
+fixSides();
 
 export default function Easy() {
     const [flip, setFlip] = useState(false);
     const [correct, setCorrect] = useState(null);
 
-    /* ---    Check Number given by the buttons with checkAnswer    --- */
-    const checkNumber = (number) => {
-        if (secondLeft[taskNumber].length === 0) {
-            secondLeft[taskNumber] = number;
-        } else {
-            secondRight[taskNumber] = number;
-        }
-        let totLeft = firstLeft[taskNumber] + secondLeft[taskNumber];
-        let totRight = firstRight[taskNumber] + secondRight[taskNumber];
-        checkAnswer("equal", totLeft, totRight);
-    }
-
-    /* ---    Check answer    --- */
-    const checkAnswer = (answer, totLeft, totRight) => {
+    const checkAnswer = (answer) => {
+        totLeft = numTenLeft[taskNumber] * 10 + numTwentyLeft[taskNumber] * 20 + numFiveLeft[taskNumber] * 5;
+        totRight = numTenRight[taskNumber] * 10 + numTwentyRight[taskNumber] * 20 + numFiveRight[taskNumber] * 5;
         if (check === false) {
             check = true;
-
             const less = totLeft < totRight;
             const equal = totLeft === totRight;
             const greater = totLeft > totRight;
@@ -91,13 +53,25 @@ export default function Easy() {
                 greater && answer === "greater";
 
             setCorrect(correct);
-            setFlip(less ? "right" : greater ? "left" : false)
+            setFlip(less ? "right" : greater ? "left" : false);
         } else {
-            alert("Du har redan valt ett alternativ");
+            alert("Du har redan valt ett alternativ")
+        }
+    };
+
+    const addMoney = (value) => {
+        if (value === "twenty") {
+            numTwentyLeft[taskNumber]++;
+        } else if (value === "ten") {
+            numTenLeft[taskNumber]++;
+        } else if (value === "five") {
+            numFiveLeft[taskNumber]++;
+        } else {
+            console.log("Error")
+            alert("Somthing is wrong")
         }
     }
 
-    /* --- Set up for next task --- */
     const nextTask = () => {
         if (check === true) {
             if (taskNumber < nrOfTasks - 1) {
@@ -105,86 +79,75 @@ export default function Easy() {
                 setFlip(false);
                 taskNumber++;
                 check = false;
-                randomSide();
-                answer = choiceBox();
             } else {
                 setCorrect(null);
                 setFlip(false);
                 taskNumber = 0;
-                alert("Du har gjort alla uppgifter!");
                 check = false;
-                randomSide();
+                alert("Du har gjort alla uppgifter!");
             }
         } else {
             alert("Välj ett alternativ först");
         }
+        fixSides();
     }
 
-    /* ---    Reset values when going back to menu     --- */
     const resetValues = () => {
         taskNumber = 0;
         check = false;
-        randomSide();
+        fixSides();
     }
 
-    /* ---    Restart game when pressing "Nollställ"     --- */
     const restartGame = () => {
         location.reload();
     }
 
 
-
     return (
         <>
-            <center>
-                <h1><center>Klossar</center></h1>
-                <h4><center>Välj ett alternativ för att balansera vågen!</center></h4>
-                <center>
-                    <ButtonGroup variant="contained" color="primary" orientation="vertical" size="large">
-                        <Button onClick={() => checkNumber(answer[0])}>1.</Button>
-                        <Button onClick={() => checkNumber(answer[1])}>2.</Button>
-                        <Button onClick={() => checkNumber(answer[2])}>3.</Button>
-                    </ButtonGroup>
+            <h1>Pengar</h1>
 
-                    <ButtonGroup variant="contained" color="disabled" orientation="vertical" size="large">
-                        <Button>{times(answer[0])
-                            .map((i) => <div key={i}>⬛</div>)}</Button>
-                        <Button>{times(answer[1])
-                            .map((i) => <div key={i}>⬛</div>)}</Button>
-                        <Button>{times(answer[2])
-                            .map((i) => <div key={i}>⬛</div>)}</Button>
-                    </ButtonGroup>
-                </center>
+            <ButtonGroup variant="contained" color="primary">
+                <Button onClick={() => addMoney("twenty")}><Image src="/tjugolapp.jpg" layout="fixed" width={75} height={45} alt="Tjugolapp" quality={50} /></Button>
+                <Button onClick={() => addMoney("ten")}><Image src="/tiokrona.png" layout="fixed" width={35} height={35} alt="Tiokrona" quality={50} /></Button>
+                <Button onClick={() => addMoney("five")}><Image src="/femkrona.png" layout="fixed" width={40} height={40} alt="Femkrona" quality={50} /></Button>
+                <Button onClick={() => checkAnswer("equal")}>Start</Button>
+            </ButtonGroup>
 
-                <br />
+            <br />
 
-                <Seesaw flip={flip}>
-                    <Seesaw.Left>
-                        {times(firstLeft[taskNumber] + secondLeft[taskNumber])
-                            .map((i) => <div key={i}>⬛</div>)}
-                    </Seesaw.Left>
-                    <Seesaw.Right>
-                        {times(firstRight[taskNumber] + secondRight[taskNumber])
-                            .map((i) => <div key={i}>🟫</div>)}
-                    </Seesaw.Right>
-                </Seesaw>
+            <Seesaw flip={flip}>
+                <Seesaw.Left>
+                    {times(numTwentyLeft[taskNumber])
+                        .map((i_1) => <div key={i_1}><Image src="/tjugolapp.jpg" layout="fixed" width={75} height={45} alt="Tjugolapp" quality={50} /></div>)}
+                    {times(numTenLeft[taskNumber])
+                        .map((i_2) => <div key={i_2}><Image src="/tiokrona.png" layout="fixed" width={35} height={35} alt="Tiokrona" quality={50} /></div>)}
+                    {times(numFiveLeft[taskNumber])
+                        .map((i_3) => <div key={i_3}><Image src="/femkrona.png" layout="fixed" width={40} height={40} alt="Femkrona" quality={50} /></div>)}
+                </Seesaw.Left>
+                <Seesaw.Right>
+                    {times(numTwentyRight[taskNumber])
+                        .map((i_4) => <div key={i_4}><Image src="/tjugolapp.jpg" layout="fixed" width={75} height={45} alt="Tjugolapp" quality={50} /></div>)}
+                    {times(numTenRight[taskNumber])
+                        .map((i_5) => <div key={i_5}><Image src="/tiokrona.png" layout="fixed" width={35} height={35} alt="Tiokrona" quality={50} /></div>)}
+                    {times(numFiveRight[taskNumber])
+                        .map((i_6) => <div key={i_6}><Image src="/femkrona.png" layout="fixed" width={40} height={40} alt="Femkrona" quality={50} /></div>)}
+                </Seesaw.Right>
+            </Seesaw>
 
-                <br />
+            <br />
 
-                <LinearProgress variant="determinate" value={(taskNumber + 1) / nrOfTasks * 100} />
+            <LinearProgress variant="determinate" value={(taskNumber + 1) / nrOfTasks * 100} />
 
-                <br />
+            <br />
 
-                {correct != null &&
-                    <Alert severity={correct ? "success" : "info"}>
-                        {correct ? "Rätt svar!" : "Tyvärr, fel svar."}
-                    </Alert>
-                }
+            {correct != null &&
+                <Alert severity={correct ? "success" : "info"}>
+                    {correct ? "Rätt svar!" : "Tyvärr, fel svar."}
+                </Alert>
+            }
 
-                {correct == null &&
-                    <br />
-                }
-            </center>
+            <br />
 
             <div>
                 <Link href="/">
@@ -195,7 +158,6 @@ export default function Easy() {
 
                 <Button onClick={() => nextTask()}>Nästa uppgift</Button>
             </div>
-
         </>
     );
 }

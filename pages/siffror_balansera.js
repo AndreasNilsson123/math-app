@@ -16,7 +16,6 @@ let secondRight = [...Array(nrOfTasks)].map(() => Math.floor(Math.random() * (9)
 
 /* ---    Manipulate values so addition can work    --- */
 const fixSides = () => {
-    if (secondLeft[taskNumber].length === 0) {
         if (firstLeft[taskNumber] > firstRight[taskNumber] + secondRight[taskNumber]) {
             firstLeft[taskNumber] = Math.floor(Math.random() * (firstRight[taskNumber] + secondRight[taskNumber] - 1) + 1);
         }
@@ -24,25 +23,11 @@ const fixSides = () => {
             firstRight[taskNumber] = Math.floor(Math.random() * Math.trunc((firstLeft[taskNumber] + 9) / 2) + 1);
             secondRight[taskNumber] = Math.floor(Math.random() * Math.trunc((firstLeft[taskNumber] + 9) / 2) + 1);
         }
-    } else {
-        if (firstRight[taskNumber] > firstLeft[taskNumber] + secondLeft[taskNumber]) {
-            firstRight[taskNumber] = Math.floor(Math.random() * (firstLeft[taskNumber] + secondLeft[taskNumber] - 1) + 1);
-        }
-        if (firstRight[taskNumber] + 9 < firstLeft[taskNumber] + secondLeft[taskNumber]) {
-            firstLeft[taskNumber] = Math.floor(Math.random() * Math.trunc((firstRight[taskNumber] + 9) / 2) + 1);
-            secondLeft[taskNumber] = Math.floor(Math.random() * Math.trunc((firstRight[taskNumber] + 9) / 2) + 1);
-        }
-    }
 }
 
 /* ---    Randomize side to be emmpty      --- */
 const randomSide = () => {
-    let randomNumber = Math.floor(Math.random() * (2));
-    if (randomNumber === 0) {
-        secondLeft[taskNumber] = [];
-    } else {
-        secondRight[taskNumber] = [];
-    }
+    secondLeft[taskNumber] = [];
 }
 
 randomSide();
@@ -55,11 +40,7 @@ export default function Easy() {
 
     /* ---    Check Number given by the buttons with checkAnswer    --- */
     const checkNumber = (number) => {
-        if (secondLeft[taskNumber].length === 0) {
-            secondLeft[taskNumber] = number;
-        } else {
-            secondRight[taskNumber] = number;
-        }
+        secondLeft[taskNumber] = number;
         let totLeft = firstLeft[taskNumber] + secondLeft[taskNumber];
         let totRight = firstRight[taskNumber] + secondRight[taskNumber];
         checkAnswer("equal", totLeft, totRight);
@@ -127,49 +108,49 @@ export default function Easy() {
     return (
         <>
             <center>
-            <h1><center>Siffror</center></h1>
-            <h4><center>Balansera vågen!</center></h4>
-            <center>
-                <ButtonGroup variant="contained" color="primary" size="large">
-                    <Button onClick={() => checkNumber(0)}>0</Button>
-                    <Button onClick={() => checkNumber(1)}>1</Button>
-                    <Button onClick={() => checkNumber(2)}>2</Button>
-                    <Button onClick={() => checkNumber(3)}>3</Button>
-                    <Button onClick={() => checkNumber(4)}>4</Button>
-                    <Button onClick={() => checkNumber(5)}>5</Button>
-                    <Button onClick={() => checkNumber(6)}>6</Button>
-                    <Button onClick={() => checkNumber(7)}>7</Button>
-                    <Button onClick={() => checkNumber(8)}>8</Button>
-                    <Button onClick={() => checkNumber(9)}>9</Button>
-                </ButtonGroup>
-            </center>
+                <h1><center>Siffror</center></h1>
+                <h4><center>Balansera vågen!</center></h4>
+                <center>
+                    <ButtonGroup variant="contained" color="primary" size="large">
+                        <Button onClick={() => checkNumber(0)}>0</Button>
+                        <Button onClick={() => checkNumber(1)}>1</Button>
+                        <Button onClick={() => checkNumber(2)}>2</Button>
+                        <Button onClick={() => checkNumber(3)}>3</Button>
+                        <Button onClick={() => checkNumber(4)}>4</Button>
+                        <Button onClick={() => checkNumber(5)}>5</Button>
+                        <Button onClick={() => checkNumber(6)}>6</Button>
+                        <Button onClick={() => checkNumber(7)}>7</Button>
+                        <Button onClick={() => checkNumber(8)}>8</Button>
+                        <Button onClick={() => checkNumber(9)}>9</Button>
+                    </ButtonGroup>
+                </center>
 
-            <br />
-
-            <Seesaw flip={flip}>
-                <Seesaw.Left>
-                    <div>{firstLeft[taskNumber]}+{secondLeft[taskNumber]}</div>
-                </Seesaw.Left>
-                <Seesaw.Right>
-                    <div>{firstRight[taskNumber]}+{secondRight[taskNumber]}</div>
-                </Seesaw.Right>
-            </Seesaw>
-
-            <br />
-
-            <LinearProgress variant="determinate" value={(taskNumber + 1) / nrOfTasks * 100} />
-
-            <br />
-
-            {correct != null &&
-                <Alert severity={correct ? "success" : "info"}>
-                    {correct ? "Rätt svar!" : "Tyvärr, fel svar."}
-                </Alert>
-            }
-
-            {correct == null &&
                 <br />
-            }
+
+                <Seesaw flip={flip}>
+                    <Seesaw.Left>
+                        <div>{firstLeft[taskNumber]}+{secondLeft[taskNumber]}</div>
+                    </Seesaw.Left>
+                    <Seesaw.Right>
+                        <div>{firstRight[taskNumber]}+{secondRight[taskNumber]}</div>
+                    </Seesaw.Right>
+                </Seesaw>
+
+                <br />
+
+                <LinearProgress variant="determinate" value={(taskNumber + 1) / nrOfTasks * 100} />
+
+                <br />
+
+                {correct != null &&
+                    <Alert severity={correct ? "success" : "info"}>
+                        {correct ? "Rätt svar!" : "Tyvärr, fel svar."}
+                    </Alert>
+                }
+
+                {correct == null &&
+                    <br />
+                }
             </center>
 
             <div>
