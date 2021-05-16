@@ -120,12 +120,14 @@ export default function Easy() {
 
     const resetValues = () => {
         setTaskNumber(0);
-        setLeftMoney(randMoney(rightMoney[taskNumber].sum))
+        setLeftMoney(randMoney(rightMoney[taskNumber].sum));
         setCheck(false);
     }
 
     const restartGame = () => {
-        location.reload();
+        setTaskNumber(0);
+        setCheck(false);
+        setLeftMoney(randMoney(rightMoney[taskNumber].sum));
     }
 
 
