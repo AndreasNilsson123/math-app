@@ -19,7 +19,6 @@ let numTwentyLeft = [...Array(nrOfTasks)].map(() => Math.floor(Math.random() * (
 let numTwentyRight = [...Array(nrOfTasks)].map(() => Math.floor(Math.random() * (2)) + 1);
 
 let taskNumber = 0;
-let check = false;
 
 let totLeft = numTenLeft[taskNumber] * 10 + numTwentyLeft[taskNumber] * 20 + numFiveLeft[taskNumber] * 5;
 let totRight = numTenRight[taskNumber] * 10 + numTwentyRight[taskNumber] * 20 + numFiveRight[taskNumber] * 5;
@@ -37,12 +36,12 @@ fixSides();
 export default function Easy() {
     const [flip, setFlip] = useState(false);
     const [correct, setCorrect] = useState(null);
+    const [check, setCheck] = useState(false);
 
     const checkAnswer = (answer) => {
         totLeft = numTenLeft[taskNumber] * 10 + numTwentyLeft[taskNumber] * 20 + numFiveLeft[taskNumber] * 5;
         totRight = numTenRight[taskNumber] * 10 + numTwentyRight[taskNumber] * 20 + numFiveRight[taskNumber] * 5;
-        if (check === false) {
-            check = true;
+        if (!check) {
             const less = totLeft < totRight;
             const equal = totLeft === totRight;
             const greater = totLeft > totRight;
@@ -52,6 +51,7 @@ export default function Easy() {
                 equal && answer === "equal" ||
                 greater && answer === "greater";
 
+            setCheck(true);
             setCorrect(correct);
             setFlip(less ? "right" : greater ? "left" : false);
         } else {
@@ -73,19 +73,16 @@ export default function Easy() {
     }
 
     const nextTask = () => {
-        if (check === true) {
+        if (check) {
             if (taskNumber < nrOfTasks - 1) {
-                setCorrect(null);
-                setFlip(false);
                 taskNumber++;
-                check = false;
             } else {
-                setCorrect(null);
-                setFlip(false);
                 taskNumber = 0;
-                check = false;
                 alert("Du har gjort alla uppgifter!");
             }
+            setFlip(false);
+            setCorrect(null);
+            setCheck(false);
         } else {
             alert("Välj ett alternativ först");
         }
@@ -94,7 +91,7 @@ export default function Easy() {
 
     const resetValues = () => {
         taskNumber = 0;
-        check = false;
+        setCheck(false);
         fixSides();
     }
 
