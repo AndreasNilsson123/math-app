@@ -28,7 +28,7 @@ export default function Home() {
         <Button variant="contained" color="primary" size="large" fullWidth={true} id="firstpagebtn">2.Siffror</Button>
       </Link>
       <Link href="/pengar_balansera">
-        <Button variant="contained" color="primary" size="large" fullWidth={true} id="firstpagebtn">2.Pengar (Inte klar)</Button>
+        <Button variant="contained" color="primary" size="large" fullWidth={true} id="firstpagebtn">2.Pengar (Typ klar)</Button>
       </Link>
 
       <h2>Större, mindre eller lika med</h2>
@@ -49,7 +49,7 @@ export default function Home() {
 
       <h2>Custom</h2>
       <Link href="/custom">
-        <Button variant="contained" color="primary" size="large" fullWidth={true} id="firstpagebtn">5.Gör Egna uppgifter (Inte klar)</Button>
+        <Button variant="contained" color="primary" size="large" fullWidth={true} id="firstpagebtn">5.Gör Egna uppgifter (Typ klar)</Button>
       </Link>
     </>
   );

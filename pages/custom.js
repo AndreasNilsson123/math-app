@@ -246,8 +246,8 @@ export default function Easy() {
 
         <br />
         <ButtonGroup id="firstpagebtn">
-          <Button onClick={() => side = "left"}>Vänster</Button>
-          <Button onClick={() => side = "right"}>Höger</Button>
+          <Button onClick={() => side = "left"}>1:a vänster</Button>
+          <Button onClick={() => side = "right"}>1:a höger</Button>
         </ButtonGroup>
         <br />
 
