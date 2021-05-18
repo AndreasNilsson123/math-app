@@ -63,7 +63,6 @@ const randObject = (maxSum) => {
 
 export default function Easy() {
     const [flip, setFlip] = useState(false);
-    const [check, setCheck] = useState(false);
 
     const [leftObject, setLeftObject] = useState(randObject(0));
     const [rightObject, setRightObject] = useState(randObject(0));
@@ -92,16 +91,11 @@ export default function Easy() {
             totRight = rightObject.diff;
         }
 
-        if (!check) {
             const less = totLeft < totRight;
             const equal = totLeft === totRight;
             const greater = totLeft > totRight;
 
-            setCheck(true);
             setFlip(less ? "right" : greater ? "left" : false);
-        } else {
-            alert("Du har redan valt ett alternativ")
-        }
     };
 
     const addObject = (value, side) => {
@@ -166,12 +160,10 @@ export default function Easy() {
         setOperatorRight([]);
         setLeftObject(randObject(0));
         setRightObject(randObject(0));
-        setCheck(false);
         setFlip(false);
     }
 
     const restartGame = () => {
-        setCheck(false);
         setLeftNumber();
         setRightNumber();
         setSecondLeftNumber([]);
