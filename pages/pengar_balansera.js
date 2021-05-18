@@ -12,7 +12,7 @@ const nrOfTasks = 10;
 // random int array from min (inclusive) to max (exclusive)
 const randInt = (min, max) => Math.floor(Math.random() * (max - min)) + min;
 
-const createMoney = ({ five = 0, ten = 0, twenty =  0 } = {}) => ({
+const createMoney = ({ five = 0, ten = 0, twenty = 0 } = {}) => ({
     five,
     ten,
     twenty,
@@ -32,7 +32,6 @@ const createMoney = ({ five = 0, ten = 0, twenty =  0 } = {}) => ({
 
 const randMoney = (maxSum) => {
     const money = createMoney();
-
     if (maxSum < 5) return money;
 
     const value = [5, 10, 20];
@@ -43,11 +42,10 @@ const randMoney = (maxSum) => {
     for (let i = 0; i < maxLoops && money.sum < maxSum; ++i) {
         const moneyType = randInt(0, 3);
 
-        if (money.sum + value[moneyType] >= maxSum) {
+        if (money.sum + value[moneyType] > maxSum) {
             continue;
         }
-
-        if (money.sum > 0 && Math.random() < 0.05) {
+        if (money.sum > 0 && Math.random() < 0.2) {
             break;
         }
 
@@ -113,6 +111,7 @@ export default function Easy() {
             setCorrect(null);
             setCheck(false);
             setLeftMoney(randMoney(rightMoney[taskNumber].sum))
+
         } else {
             alert("Välj ett alternativ först");
         }
@@ -122,12 +121,16 @@ export default function Easy() {
         setTaskNumber(0);
         setLeftMoney(randMoney(rightMoney[taskNumber].sum));
         setCheck(false);
+        setFlip(false);
+        setCorrect(null);
     }
 
     const restartGame = () => {
         setTaskNumber(0);
         setCheck(false);
         setLeftMoney(randMoney(rightMoney[taskNumber].sum));
+        setFlip(false);
+        setCorrect(null);
     }
 
 
