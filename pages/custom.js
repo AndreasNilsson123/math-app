@@ -12,6 +12,12 @@ const createObject = (numberValue, numberValueRight, { moneyFive = 0, moneyTen =
     moneyFive, moneyTen, moneyTwenty,                             //Money objects
     number, secondNumber,                                         //Number objects
     get sum() {
+        if(numberValueRight == undefined){
+            numberValueRight = 0;
+        }
+        if(numberValue == undefined){
+            numberValue = 0;
+        }
         return this.moneyFive * 5 + this.moneyTen * 10 + this.moneyTwenty * 20 + this.number * numberValue + this.secondNumber * numberValueRight;
     },
     get diff() {
@@ -66,8 +72,8 @@ export default function Easy() {
 
     const [leftObject, setLeftObject] = useState(randObject(0));
     const [rightObject, setRightObject] = useState(randObject(0));
-    const [numberLeft, setLeftNumber] = useState(0)
-    const [numberRight, setRightNumber] = useState(0)
+    const [numberLeft, setLeftNumber] = useState([])
+    const [numberRight, setRightNumber] = useState([])
     const [numberSecondLeft, setSecondLeftNumber] = useState([])
     const [numberSecondRight, setSecondRightNumber] = useState([])
     const [operator, setOperator] = useState([])
@@ -81,7 +87,7 @@ export default function Easy() {
         if (operator === "+" || operator.length === 0) {
             totLeft = leftObject.sum;
         }
-        if (operatorRight === "+" || operator.length === 0) {
+        if (operatorRight === "+" || operatorRight.length === 0) {
             totRight = rightObject.sum;
         }
         if (operator === "-") {
@@ -91,11 +97,10 @@ export default function Easy() {
             totRight = rightObject.diff;
         }
 
-            const less = totLeft < totRight;
-            const equal = totLeft === totRight;
-            const greater = totLeft > totRight;
+        const less = totLeft < totRight;
+        const greater = totLeft > totRight;
 
-            setFlip(less ? "right" : greater ? "left" : false);
+        setFlip(less ? "right" : greater ? "left" : false);
     };
 
     const addObject = (value, side) => {
@@ -182,43 +187,43 @@ export default function Easy() {
                 <h1>Custom</h1>
 
                 <ButtonGroup variant="contained" color="primary" id="firstpagebtn">
-                    <Button onClick={() => addObject("moneyTwenty", side)}><Image src="/tjugolapp.jpg" layout="fixed" width={75} height={45} alt="Tjugolapp" quality={50} /></Button>
-                    <Button onClick={() => addObject("moneyTen", side)}><Image src="/tiokrona.png" layout="fixed" width={35} height={35} alt="Tiokrona" quality={50} /></Button>
-                    <Button onClick={() => addObject("moneyFive", side)}><Image src="/femkrona.png" layout="fixed" width={40} height={40} alt="Femkrona" quality={50} /></Button>
+                    <Button onClick={() => addObject("moneyTwenty", side)} id="ingamebtn"><Image src="/tjugolapp.jpg" layout="fixed" width={75} height={45} alt="Tjugolapp" quality={50} /></Button>
+                    <Button onClick={() => addObject("moneyTen", side)} id="ingamebtn"><Image src="/tiokrona.png" layout="fixed" width={35} height={35} alt="Tiokrona" quality={50} /></Button>
+                    <Button onClick={() => addObject("moneyFive", side)} id="ingamebtn"><Image src="/femkrona.png" layout="fixed" width={40} height={40} alt="Femkrona" quality={50} /></Button>
+                </ButtonGroup>
+
+                <br />
+
+                <ButtonGroup variant="contained" color="primary" size="large" id="firstpagebtn">
+                    <Button onClick={() => addObject(1, side)} id="ingamebtn">1</Button>
+                    <Button onClick={() => addObject(2, side)} id="ingamebtn">2</Button>
+                    <Button onClick={() => addObject(3, side)} id="ingamebtn">3</Button>
+                    <Button onClick={() => addObject(4, side)} id="ingamebtn">4</Button>
+                    <Button onClick={() => addObject(5, side)} id="ingamebtn">5</Button>
+                    <Button onClick={() => addObject(6, side)} id="ingamebtn">6</Button>
+                    <Button onClick={() => addObject(7, side)} id="ingamebtn">7</Button>
+                    <Button onClick={() => addObject(8, side)} id="ingamebtn">8</Button>
+                    <Button onClick={() => addObject(9, side)} id="ingamebtn">9</Button>
+                    <Button onClick={() => addObject(10, side)} id="ingamebtn">10</Button>
                 </ButtonGroup>
 
                 <br />
 
                 <ButtonGroup variant="contained" color="primary" id="firstpagebtn">
-                    <Button onClick={() => addObject(1, side)}>1</Button>
-                    <Button onClick={() => addObject(2, side)}>2</Button>
-                    <Button onClick={() => addObject(3, side)}>3</Button>
-                    <Button onClick={() => addObject(4, side)}>4</Button>
-                    <Button onClick={() => addObject(5, side)}>5</Button>
-                    <Button onClick={() => addObject(6, side)}>6</Button>
-                    <Button onClick={() => addObject(7, side)}>7</Button>
-                    <Button onClick={() => addObject(8, side)}>8</Button>
-                    <Button onClick={() => addObject(9, side)}>9</Button>
-                    <Button onClick={() => addObject(10, side)}>10</Button>
-                </ButtonGroup>
-
-                <br />
-
-                <ButtonGroup variant="contained" color="primary" id="firstpagebtn">
-                    <Button onClick={() => addOperator("add", "left")}>(V) +</Button>
-                    <Button onClick={() => addOperator("sub", "left")}>(V) -</Button>
-                    <Button onClick={() => addOperator("add", "right")}>(H) +</Button>
-                    <Button onClick={() => addOperator("sub", "right")}>(H) -</Button>
+                    <Button onClick={() => addOperator("add", "left")} id="ingamebtn">(V) +</Button>
+                    <Button onClick={() => addOperator("sub", "left")} id="ingamebtn">(V) -</Button>
+                    <Button onClick={() => addOperator("add", "right")} id="ingamebtn">(H) +</Button>
+                    <Button onClick={() => addOperator("sub", "right")} id="ingamebtn">(H) -</Button>
                 </ButtonGroup>
 
                 <br />
 
                 <ButtonGroup variant="contained" color="secondary" id="firstpagebtn">
-                    <Button onClick={() => side = "left"}>1:a vänster</Button>
-                    <Button onClick={() => side = "2left"}>2:a vänster</Button>
-                    <Button onClick={() => side = "right"}>1:a höger</Button>
-                    <Button onClick={() => side = "2right"}>2:a höger</Button>
-                    <Button onClick={() => checkAnswer(operator)}>Starta</Button>
+                    <Button onClick={() => side = "left"} id="ingamebtn">1:a vänster</Button>
+                    <Button onClick={() => side = "2left"} id="ingamebtn">2:a vänster</Button>
+                    <Button onClick={() => side = "right"} id="ingamebtn">1:a höger</Button>
+                    <Button onClick={() => side = "2right"} id="ingamebtn">2:a höger</Button>
+                    <Button onClick={() => checkAnswer(operator)} id="ingamebtn">Starta</Button>
                 </ButtonGroup>
                 <br />
 

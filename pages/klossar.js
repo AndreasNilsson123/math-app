@@ -1,4 +1,4 @@
-import { Button, ButtonGroup, LinearProgress} from "@material-ui/core";
+import { Button, ButtonGroup, LinearProgress } from "@material-ui/core";
 import { Alert } from "@material-ui/lab";
 import times from "lodash/times";
 import Link from "next/link";
@@ -31,7 +31,7 @@ export default function Easy() {
 
       setCorrect(correct);
       setFlip(less ? "right" : greater ? "left" : false);
-    }else{
+    } else {
       alert("Du har redan valt ett alternativ");
     }
   }
@@ -55,7 +55,7 @@ export default function Easy() {
     }
   }
 
-  const resetValues = () =>{
+  const resetValues = () => {
     taskNumber = 0;
     check = false;
   }
@@ -66,39 +66,39 @@ export default function Easy() {
 
   return (
     <>
-    <center>
-      <h1>Klossar</h1>
+      <center>
+        <h1>Klossar</h1>
 
-      <ButtonGroup variant="contained" color="primary">
-        <Button onClick={() => checkAnswer("greater")}>&gt;</Button>
-        <Button onClick={() => checkAnswer("equal")}>=</Button>
-        <Button onClick={() => checkAnswer("less")}>&lt;</Button>
-      </ButtonGroup>
+        <ButtonGroup variant="contained" color="primary">
+          <Button onClick={() => checkAnswer("greater")}>&gt;</Button>
+          <Button onClick={() => checkAnswer("equal")}>=</Button>
+          <Button onClick={() => checkAnswer("less")}>&lt;</Button>
+        </ButtonGroup>
 
-      <br />
+        <br />
 
-      <Seesaw flip={flip}>
-        <Seesaw.Left>
-          {times(numItemsLeft[taskNumber])
-            .map((i) => <div key={i}>⬛</div>)}
-        </Seesaw.Left>
-        <Seesaw.Right>
-          {times(numItemsRight[taskNumber])
-            .map((i) => <div key={i}>🟫</div>)}
-        </Seesaw.Right>
-      </Seesaw>
+        <Seesaw flip={flip}>
+          <Seesaw.Left>
+            {times(numItemsLeft[taskNumber])
+              .map((i) => <div key={i}>⬛</div>)}
+          </Seesaw.Left>
+          <Seesaw.Right>
+            {times(numItemsRight[taskNumber])
+              .map((i) => <div key={i}>🟫</div>)}
+          </Seesaw.Right>
+        </Seesaw>
 
-      <br />
+        <br />
 
-      <LinearProgress variant="determinate" value={(taskNumber+1)/nrOfTasks * 100} />
+        <LinearProgress variant="determinate" value={(taskNumber + 1) / nrOfTasks * 100} />
 
-      <br />
+        <br />
 
-      {correct != null &&
-        <Alert severity={correct ? "success" : "info"}>
-          {correct ? "Rätt svar!" : "Tyvärr, fel svar."}
-        </Alert>
-      }
+        {correct != null &&
+          <Alert severity={correct ? "success" : "info"}>
+            {correct ? "Rätt svar!" : "Tyvärr, fel svar."}
+          </Alert>
+        }
       </center>
 
       <br />

@@ -70,8 +70,8 @@ export default function Easy() {
     }
 
     return (
-        <>
-            <h1><center>Division</center></h1>
+        <><center>
+            <h1>Division</h1>
 
             <ButtonGroup variant="contained" color="primary">
                 <Button onClick={() => checkAnswer("greater")}>&gt;</Button>
@@ -101,6 +101,7 @@ export default function Easy() {
                     {correct ? "Rätt svar!" : "Tyvärr, fel svar."}
                 </Alert>
             }
+            </center>
 
             <br />
 

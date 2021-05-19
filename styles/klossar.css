@@ -6,3 +6,9 @@
 #firstpagebtn {
   margin:1.5px;
 }
+
+#ingamebtn {
+  margin-left: 5px;
+  height: 60px;
+  border-radius: 3px;
+}

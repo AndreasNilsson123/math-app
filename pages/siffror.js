@@ -48,14 +48,14 @@ export default function Easy() {
 
     const checkAnswer = (answer) => {
         let totLeft, totRight;
-        if(sign === "+") {
+        if (sign === "+") {
             totLeft = firstLeft[taskNumber] + secondLeft[taskNumber];
             totRight = firstRight[taskNumber] + secondRight[taskNumber];
-        }else{
+        } else {
             totLeft = firstLeft[taskNumber] - secondLeft[taskNumber];
             totRight = firstRight[taskNumber] - secondRight[taskNumber];
         }
-        console.log(totLeft,totRight);
+        console.log(totLeft, totRight);
         if (check === false) {
             check = true;
             const less = totLeft < totRight;
@@ -105,7 +105,8 @@ export default function Easy() {
 
     return (
         <>
-            <h1><center>Siffror</center></h1>
+            <center>
+            <h1>Siffror</h1>
 
             <ButtonGroup variant="contained" color="primary">
                 <Button onClick={() => checkAnswer("greater")}>&gt;</Button>
@@ -135,6 +136,7 @@ export default function Easy() {
                     {correct ? "Rätt svar!" : "Tyvärr, fel svar."}
                 </Alert>
             }
+            </center>
 
             <br />
 

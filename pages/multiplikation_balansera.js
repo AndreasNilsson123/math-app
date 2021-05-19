@@ -29,23 +29,23 @@ const fixSides = () => {
     let alt = [];
     let condition = false;
     for (i = 0; i < 9; i++) {
-      if((firstRight[taskNumber] * secondRight[taskNumber]) % (i+1) === 0){
-        alt[j] = i+1;
+      if ((firstRight[taskNumber] * secondRight[taskNumber]) % (i + 1) === 0) {
+        alt[j] = i + 1;
         j++;
-      }     
+      }
     }
     let k;
     let n = 0;
     console.log(alt)
-    for(k=0; k < alt.length; k++) {
-      if(alt[k]*10 >= (firstRight[taskNumber] * secondRight[taskNumber])){
+    for (k = 0; k < alt.length; k++) {
+      if (alt[k] * 10 >= (firstRight[taskNumber] * secondRight[taskNumber])) {
         alt[n] = alt[k];
         n++;
         condition = true;
       }
     }
     console.log(alt)
-    if(condition === true){
+    if (condition === true) {
       let workingQuestionIndex = Math.floor(Math.random() * (n));
       console.log(workingQuestionIndex);
       firstLeft[taskNumber] = alt[workingQuestionIndex];
@@ -139,22 +139,20 @@ export default function Easy() {
   return (
     <>
       <center>
-        <h1><center>Siffror</center></h1>
-        <h4><center>Balansera vågen!</center></h4>
-        <center>
-          <ButtonGroup variant="contained" color="primary" size="large">
-            <Button onClick={() => checkNumber(1)}>1</Button>
-            <Button onClick={() => checkNumber(2)}>2</Button>
-            <Button onClick={() => checkNumber(3)}>3</Button>
-            <Button onClick={() => checkNumber(4)}>4</Button>
-            <Button onClick={() => checkNumber(5)}>5</Button>
-            <Button onClick={() => checkNumber(6)}>6</Button>
-            <Button onClick={() => checkNumber(7)}>7</Button>
-            <Button onClick={() => checkNumber(8)}>8</Button>
-            <Button onClick={() => checkNumber(9)}>9</Button>
-            <Button onClick={() => checkNumber(10)}>10</Button>
-          </ButtonGroup>
-        </center>
+        <h1>Siffror</h1>
+        <h4>Balansera vågen!</h4>
+        <ButtonGroup variant="contained" color="primary" size="large">
+          <Button onClick={() => checkNumber(1)}>1</Button>
+          <Button onClick={() => checkNumber(2)}>2</Button>
+          <Button onClick={() => checkNumber(3)}>3</Button>
+          <Button onClick={() => checkNumber(4)}>4</Button>
+          <Button onClick={() => checkNumber(5)}>5</Button>
+          <Button onClick={() => checkNumber(6)}>6</Button>
+          <Button onClick={() => checkNumber(7)}>7</Button>
+          <Button onClick={() => checkNumber(8)}>8</Button>
+          <Button onClick={() => checkNumber(9)}>9</Button>
+          <Button onClick={() => checkNumber(10)}>10</Button>
+        </ButtonGroup>
 
         <br />
 
@@ -163,7 +161,7 @@ export default function Easy() {
             <div>{firstLeft[taskNumber]}*{secondLeft[taskNumber]}</div>
           </Seesaw.Left>
           <Seesaw.Right>
-            <div>{firstRight[taskNumber]*secondRight[taskNumber]}</div>
+            <div>{firstRight[taskNumber] * secondRight[taskNumber]}</div>
           </Seesaw.Right>
         </Seesaw>
 
@@ -177,10 +175,6 @@ export default function Easy() {
           <Alert severity={correct ? "success" : "error"}>
             {correct ? "Rätt svar!" : "Tyvärr, fel svar."}
           </Alert>
-        }
-
-        {correct == null &&
-          <br />
         }
       </center>
 

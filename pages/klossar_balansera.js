@@ -137,9 +137,8 @@ export default function Easy() {
     return (
         <>
             <center>
-                <h1><center>Klossar</center></h1>
-                <h4><center>Välj ett alternativ för att balansera vågen!</center></h4>
-                <center>
+                <h1>Klossar</h1>
+                <h4>Välj ett alternativ för att balansera vågen!</h4>
                     <ButtonGroup variant="contained" color="primary" orientation="vertical" size="large">
                         <Button onClick={() => checkNumber(answer[0])}>1.</Button>
                         <Button onClick={() => checkNumber(answer[1])}>2.</Button>
@@ -154,7 +153,6 @@ export default function Easy() {
                         <Button>{times(answer[2])
                             .map((i) => <div key={i}>⬛</div>)}</Button>
                     </ButtonGroup>
-                </center>
 
                 <br />
 

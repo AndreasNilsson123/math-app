@@ -45,7 +45,7 @@ const randMoney = (maxSum) => {
         if (money.sum + value[moneyType] > maxSum) {
             continue;
         }
-        if (money.sum > 0 && Math.random() < 0.2) {
+        if (money.sum > 0 && Math.random() < 0.05) {
             break;
         }
 
@@ -101,17 +101,21 @@ export default function Easy() {
 
     const nextTask = () => {
         if (check) {
-            if (taskNumber < nrOfTasks - 1) {
-                setTaskNumber(taskNumber + 1);
-            } else {
-                setTaskNumber(0);
+            const nextTaskNumber = (taskNumber + 1) % nrOfTasks;
+            if (nextTaskNumber === 0) {
                 alert("Du har gjort alla uppgifter!");
+            }
+            setTaskNumber(nextTaskNumber);
+            if (rightMoney[nextTaskNumber].sum >= 50) {
+                setLeftMoney(randMoney(rightMoney[nextTaskNumber].sum - 25))
+            } else if(rightMoney[nextTaskNumber].sum >= 25){
+                setLeftMoney(randMoney(rightMoney[nextTaskNumber].sum - 10))
+            } else {
+                setLeftMoney(randMoney(rightMoney[nextTaskNumber].sum))
             }
             setFlip(false);
             setCorrect(null);
             setCheck(false);
-            setLeftMoney(randMoney(rightMoney[taskNumber].sum))
-
         } else {
             alert("Välj ett alternativ först");
         }
@@ -136,6 +140,7 @@ export default function Easy() {
 
     return (
         <>
+        <center>
             <h1>Pengar</h1>
 
             <ButtonGroup variant="contained" color="primary">
@@ -177,6 +182,7 @@ export default function Easy() {
                     {correct ? "Rätt svar!" : "Tyvärr, fel svar."}
                 </Alert>
             }
+            </center>
 
             <br />
 

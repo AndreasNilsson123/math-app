@@ -70,7 +70,7 @@ export default function Easy() {
   const resetValues = () => {
     taskNumber = 0;
     check = false;
-}
+  }
 
   const restartGame = () => {
     location.reload();
@@ -79,46 +79,48 @@ export default function Easy() {
 
   return (
     <>
-      <h1>Pengar</h1>
+      <center>
+        <h1>Pengar</h1>
 
-      <ButtonGroup variant="contained" color="primary">
-        <Button onClick={() => checkAnswer("greater")}>&gt;</Button>
-        <Button onClick={() => checkAnswer("equal")}>=</Button>
-        <Button onClick={() => checkAnswer("less")}>&lt;</Button>
-      </ButtonGroup>
+        <ButtonGroup variant="contained" color="primary">
+          <Button onClick={() => checkAnswer("greater")}>&gt;</Button>
+          <Button onClick={() => checkAnswer("equal")}>=</Button>
+          <Button onClick={() => checkAnswer("less")}>&lt;</Button>
+        </ButtonGroup>
 
-      <br />
+        <br />
 
-      <Seesaw flip={flip}>
-        <Seesaw.Left>
-          {times(numTwentyLeft[taskNumber])
-            .map((i_1) => <div key={i_1}><Image src="/tjugolapp.jpg" layout = "fixed" width={75} height={45} alt="Tjugolapp" quality={50}/></div>)}
-          {times(numTenLeft[taskNumber])
-            .map((i_2) => <div key={i_2}><Image src="/tiokrona.jpg" layout = "fixed" width={35} height={35} alt="Tiokrona" quality={50}/></div>)}
-          {times(numFiveLeft[taskNumber])
-            .map((i_3) => <div key={i_3}><Image src="/femkrona.png" layout = "fixed" width={40} height={40} alt="Femkrona" quality={50}/></div>)}
-        </Seesaw.Left>
-        <Seesaw.Right>
-          {times(numTwentyRight[taskNumber])
-            .map((i_4) => <div key={i_4}><Image src="/tjugolapp.jpg" layout = "fixed" width={75} height={45} alt="Tjugolapp" quality={50}/></div>)}
-          {times(numTenRight[taskNumber])
-            .map((i_5) => <div key={i_5}><Image src="/tiokrona.jpg" layout = "fixed" width={35} height={35} alt="Tiokrona" quality={50}/></div>)}
-          {times(numFiveRight[taskNumber])
-            .map((i_6) => <div key={i_6}><Image src="/femkrona.png" layout = "fixed" width={40} height={40} alt="Femkrona" quality={50}/></div>)}
-        </Seesaw.Right>
-      </Seesaw>
+        <Seesaw flip={flip}>
+          <Seesaw.Left>
+            {times(numTwentyLeft[taskNumber])
+              .map((i_1) => <div key={i_1}><Image src="/tjugolapp.jpg" layout="fixed" width={75} height={45} alt="Tjugolapp" quality={50} /></div>)}
+            {times(numTenLeft[taskNumber])
+              .map((i_2) => <div key={i_2}><Image src="/tiokrona.jpg" layout="fixed" width={35} height={35} alt="Tiokrona" quality={50} /></div>)}
+            {times(numFiveLeft[taskNumber])
+              .map((i_3) => <div key={i_3}><Image src="/femkrona.png" layout="fixed" width={40} height={40} alt="Femkrona" quality={50} /></div>)}
+          </Seesaw.Left>
+          <Seesaw.Right>
+            {times(numTwentyRight[taskNumber])
+              .map((i_4) => <div key={i_4}><Image src="/tjugolapp.jpg" layout="fixed" width={75} height={45} alt="Tjugolapp" quality={50} /></div>)}
+            {times(numTenRight[taskNumber])
+              .map((i_5) => <div key={i_5}><Image src="/tiokrona.jpg" layout="fixed" width={35} height={35} alt="Tiokrona" quality={50} /></div>)}
+            {times(numFiveRight[taskNumber])
+              .map((i_6) => <div key={i_6}><Image src="/femkrona.png" layout="fixed" width={40} height={40} alt="Femkrona" quality={50} /></div>)}
+          </Seesaw.Right>
+        </Seesaw>
 
-      <br />
+        <br />
 
-      <LinearProgress variant="determinate" value={(taskNumber + 1) / nrOfTasks * 100} />
+        <LinearProgress variant="determinate" value={(taskNumber + 1) / nrOfTasks * 100} />
 
-      <br />
+        <br />
 
-      {correct != null &&
-        <Alert severity={correct ? "success" : "info"}>
-          {correct ? "Rätt svar!" : "Tyvärr, fel svar."}
-        </Alert>
-      }
+        {correct != null &&
+          <Alert severity={correct ? "success" : "info"}>
+            {correct ? "Rätt svar!" : "Tyvärr, fel svar."}
+          </Alert>
+        }
+      </center>
 
       <br />
 

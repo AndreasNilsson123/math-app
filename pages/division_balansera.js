@@ -133,9 +133,8 @@ export default function Easy() {
   return (
     <>
       <center>
-        <h1><center>Siffror</center></h1>
-        <h4><center>Balansera vågen!</center></h4>
-        <center>
+        <h1>Siffror</h1>
+        <h4>Balansera vågen!</h4>
           <ButtonGroup variant="contained" color="primary" size="large">
             <Button onClick={() => checkNumber(1)}>1</Button>
             <Button onClick={() => checkNumber(2)}>2</Button>
@@ -148,8 +147,7 @@ export default function Easy() {
             <Button onClick={() => checkNumber(9)}>9</Button>
             <Button onClick={() => checkNumber(10)}>10</Button>
           </ButtonGroup>
-        </center>
-
+          
         <br />
 
         <Seesaw flip={flip}>
