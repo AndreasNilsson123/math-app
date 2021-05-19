@@ -9,7 +9,7 @@ export default function Home() {
     <>
       <h1><center>Välj svårighetsgrad</center></h1>
 
-      <h2>Större, mindre eller lika med</h2>
+      <h2>Större, mindre eller likamed</h2>
         <Link href="/klossar">
           <Button variant="contained" color="primary" size="large" fullWidth={true} id="firstpagebtn">1.Klossar</Button>
         </Link>
@@ -31,7 +31,7 @@ export default function Home() {
         <Button variant="contained" color="primary" size="large" fullWidth={true} id="firstpagebtn">2.Pengar</Button>
       </Link>
 
-      <h2>Större, mindre eller lika med</h2>
+      <h2>Större, mindre eller likamed</h2>
       <Link href="/multiplikation">
         <Button variant="contained" color="secondary" size="large" fullWidth={true} id="firstpagebtn">3.Multiplikation</Button>
       </Link>
