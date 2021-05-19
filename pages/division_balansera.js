@@ -135,18 +135,18 @@ export default function Easy() {
       <center>
         <h1>Siffror</h1>
         <h4>Balansera vågen!</h4>
-          <ButtonGroup variant="contained" color="primary" size="large">
-            <Button onClick={() => checkNumber(1)}>1</Button>
-            <Button onClick={() => checkNumber(2)}>2</Button>
-            <Button onClick={() => checkNumber(3)}>3</Button>
-            <Button onClick={() => checkNumber(4)}>4</Button>
-            <Button onClick={() => checkNumber(5)}>5</Button>
-            <Button onClick={() => checkNumber(6)}>6</Button>
-            <Button onClick={() => checkNumber(7)}>7</Button>
-            <Button onClick={() => checkNumber(8)}>8</Button>
-            <Button onClick={() => checkNumber(9)}>9</Button>
-            <Button onClick={() => checkNumber(10)}>10</Button>
-          </ButtonGroup>
+          <div className="ingamebtnlayout">
+            <Button variant="contained" color="primary" onClick={() => checkNumber(1)} id="ingamebtn">1</Button>
+            <Button variant="contained" color="primary" onClick={() => checkNumber(2)} id="ingamebtn">2</Button>
+            <Button variant="contained" color="primary" onClick={() => checkNumber(3)} id="ingamebtn">3</Button>
+            <Button variant="contained" color="primary" onClick={() => checkNumber(4)} id="ingamebtn">4</Button>
+            <Button variant="contained" color="primary" onClick={() => checkNumber(5)} id="ingamebtn">5</Button>
+            <Button variant="contained" color="primary" onClick={() => checkNumber(6)} id="ingamebtn">6</Button>
+            <Button variant="contained" color="primary" onClick={() => checkNumber(7)} id="ingamebtn">7</Button>
+            <Button variant="contained" color="primary" onClick={() => checkNumber(8)} id="ingamebtn">8</Button>
+            <Button variant="contained" color="primary" onClick={() => checkNumber(9)} id="ingamebtn">9</Button>
+            <Button variant="contained" color="primary" onClick={() => checkNumber(10)} id="ingamebtn">10</Button>
+          </div>
           
         <br />
 

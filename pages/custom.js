@@ -12,10 +12,10 @@ const createObject = (numberValue, numberValueRight, { moneyFive = 0, moneyTen =
     moneyFive, moneyTen, moneyTwenty,                             //Money objects
     number, secondNumber,                                         //Number objects
     get sum() {
-        if(numberValueRight == undefined){
+        if (numberValueRight == undefined) {
             numberValueRight = 0;
         }
-        if(numberValue == undefined){
+        if (numberValue == undefined) {
             numberValue = 0;
         }
         return this.moneyFive * 5 + this.moneyTen * 10 + this.moneyTwenty * 20 + this.number * numberValue + this.secondNumber * numberValueRight;
@@ -186,45 +186,46 @@ export default function Easy() {
             <center>
                 <h1>Custom</h1>
 
-                <ButtonGroup variant="contained" color="primary" id="firstpagebtn">
-                    <Button onClick={() => addObject("moneyTwenty", side)} id="ingamebtn"><Image src="/tjugolapp.jpg" layout="fixed" width={75} height={45} alt="Tjugolapp" quality={50} /></Button>
-                    <Button onClick={() => addObject("moneyTen", side)} id="ingamebtn"><Image src="/tiokrona.png" layout="fixed" width={35} height={35} alt="Tiokrona" quality={50} /></Button>
-                    <Button onClick={() => addObject("moneyFive", side)} id="ingamebtn"><Image src="/femkrona.png" layout="fixed" width={40} height={40} alt="Femkrona" quality={50} /></Button>
-                </ButtonGroup>
+                <div className="ingamebtnlayout">
+                    <Button variant="contained" color="primary" onClick={() => addObject("moneyTwenty", side)} id="ingamebtn"><Image src="/tjugolapp.jpg" layout="fixed" width={75} height={45} alt="Tjugolapp" quality={50} /></Button>
+                    <Button variant="contained" color="primary" onClick={() => addObject("moneyTen", side)} id="ingamebtn"><Image src="/tiokrona.png" layout="fixed" width={35} height={35} alt="Tiokrona" quality={50} /></Button>
+                    <Button variant="contained" color="primary" onClick={() => addObject("moneyFive", side)} id="ingamebtn"><Image src="/femkrona.png" layout="fixed" width={40} height={40} alt="Femkrona" quality={50} /></Button>
+                </div>
 
                 <br />
 
-                <ButtonGroup variant="contained" color="primary" size="large" id="firstpagebtn">
-                    <Button onClick={() => addObject(1, side)} id="ingamebtn">1</Button>
-                    <Button onClick={() => addObject(2, side)} id="ingamebtn">2</Button>
-                    <Button onClick={() => addObject(3, side)} id="ingamebtn">3</Button>
-                    <Button onClick={() => addObject(4, side)} id="ingamebtn">4</Button>
-                    <Button onClick={() => addObject(5, side)} id="ingamebtn">5</Button>
-                    <Button onClick={() => addObject(6, side)} id="ingamebtn">6</Button>
-                    <Button onClick={() => addObject(7, side)} id="ingamebtn">7</Button>
-                    <Button onClick={() => addObject(8, side)} id="ingamebtn">8</Button>
-                    <Button onClick={() => addObject(9, side)} id="ingamebtn">9</Button>
-                    <Button onClick={() => addObject(10, side)} id="ingamebtn">10</Button>
-                </ButtonGroup>
+                <div className="ingamebtnlayout">
+                    <Button variant="contained" color="primary" onClick={() => addObject(1, side)} id="ingamebtn">1</Button>
+                    <Button variant="contained" color="primary" onClick={() => addObject(2, side)} id="ingamebtn">2</Button>
+                    <Button variant="contained" color="primary" onClick={() => addObject(3, side)} id="ingamebtn">3</Button>
+                    <Button variant="contained" color="primary" onClick={() => addObject(4, side)} id="ingamebtn">4</Button>
+                    <Button variant="contained" color="primary" onClick={() => addObject(5, side)} id="ingamebtn">5</Button>
+                    <Button variant="contained" color="primary" onClick={() => addObject(6, side)} id="ingamebtn">6</Button>
+                    <Button variant="contained" color="primary" onClick={() => addObject(7, side)} id="ingamebtn">7</Button>
+                    <Button variant="contained" color="primary" onClick={() => addObject(8, side)} id="ingamebtn">8</Button>
+                    <Button variant="contained" color="primary" onClick={() => addObject(9, side)} id="ingamebtn">9</Button>
+                    <Button variant="contained" color="primary" onClick={() => addObject(10, side)} id="ingamebtn">10</Button>
+                </div>
 
                 <br />
 
-                <ButtonGroup variant="contained" color="primary" id="firstpagebtn">
-                    <Button onClick={() => addOperator("add", "left")} id="ingamebtn">(V) +</Button>
-                    <Button onClick={() => addOperator("sub", "left")} id="ingamebtn">(V) -</Button>
-                    <Button onClick={() => addOperator("add", "right")} id="ingamebtn">(H) +</Button>
-                    <Button onClick={() => addOperator("sub", "right")} id="ingamebtn">(H) -</Button>
-                </ButtonGroup>
+                <div className="ingamebtnlayout">
+                    <Button variant="contained" color="secondary" onClick={() => addOperator("add", "left")} id="ingamebtn">(V) +</Button>
+                    <Button variant="contained" color="secondary" onClick={() => addOperator("sub", "left")} id="ingamebtn">(V) -</Button>
+                    <Button variant="contained" color="secondary" onClick={() => addOperator("add", "right")} id="ingamebtn">(H) +</Button>
+                    <Button variant="contained" color="secondary" onClick={() => addOperator("sub", "right")} id="ingamebtn">(H) -</Button>
+                </div>
 
                 <br />
 
-                <ButtonGroup variant="contained" color="secondary" id="firstpagebtn">
-                    <Button onClick={() => side = "left"} id="ingamebtn">1:a vänster</Button>
-                    <Button onClick={() => side = "2left"} id="ingamebtn">2:a vänster</Button>
-                    <Button onClick={() => side = "right"} id="ingamebtn">1:a höger</Button>
-                    <Button onClick={() => side = "2right"} id="ingamebtn">2:a höger</Button>
-                    <Button onClick={() => checkAnswer(operator)} id="ingamebtn">Starta</Button>
-                </ButtonGroup>
+                <div className="ingamebtnlayout">
+                    <Button variant="contained" color="secondary" onClick={() => side = "left"} id="ingamebtn">1:a vänster</Button>
+                    <Button variant="contained" color="secondary" onClick={() => side = "2left"} id="ingamebtn">2:a vänster</Button>
+                    <Button variant="contained" color="secondary" onClick={() => side = "right"} id="ingamebtn">1:a höger</Button>
+                    <Button variant="contained" color="secondary" onClick={() => side = "2right"} id="ingamebtn">2:a höger</Button>
+                    <Button variant="contained" color="secondary" onClick={() => checkAnswer(operator)} id="ingamebtn">Starta</Button>
+                </div>
+
                 <br />
 
                 <Seesaw flip={flip}>

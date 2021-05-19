@@ -82,11 +82,11 @@ export default function Easy() {
       <center>
         <h1>Pengar</h1>
 
-        <ButtonGroup variant="contained" color="primary">
-          <Button onClick={() => checkAnswer("greater")}>&gt;</Button>
-          <Button onClick={() => checkAnswer("equal")}>=</Button>
-          <Button onClick={() => checkAnswer("less")}>&lt;</Button>
-        </ButtonGroup>
+        <div className="ingamebtnlayout">
+          <Button variant="contained" color="primary" onClick={() => checkAnswer("greater")} id="ingamebtn">&gt;</Button>
+          <Button variant="contained" color="primary" onClick={() => checkAnswer("equal")} id="ingamebtn">=</Button>
+          <Button variant="contained" color="primary" onClick={() => checkAnswer("less")} id="ingamebtn">&lt;</Button>
+        </div>
 
         <br />
 

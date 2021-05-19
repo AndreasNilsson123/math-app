@@ -3,6 +3,15 @@
     width: 60px;
   }
 
+.ingamebtnlayout {
+  position: static;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-bottom:-15px;
+}
+
 #firstpagebtn {
   margin:1.5px;
 }

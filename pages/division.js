@@ -65,19 +65,15 @@ export default function Easy() {
         check = false;
     }
 
-    function docWrite(variable) {
-        document.write(variable);
-    }
-
     return (
         <><center>
             <h1>Division</h1>
 
-            <ButtonGroup variant="contained" color="primary">
-                <Button onClick={() => checkAnswer("greater")}>&gt;</Button>
-                <Button onClick={() => checkAnswer("equal")}>=</Button>
-                <Button onClick={() => checkAnswer("less")}>&lt;</Button>
-            </ButtonGroup>
+            <div className="ingamebtnlayout">
+                <Button variant="contained" color="primary" onClick={() => checkAnswer("greater")} id="ingamebtn">&gt;</Button>
+                <Button variant="contained" color="primary" onClick={() => checkAnswer("equal")} id="ingamebtn">=</Button>
+                <Button variant="contained" color="primary" onClick={() => checkAnswer("less")} id="ingamebtn">&lt;</Button>
+            </div>
 
             <br />
 

@@ -143,12 +143,12 @@ export default function Easy() {
         <center>
             <h1>Pengar</h1>
 
-            <ButtonGroup variant="contained" color="primary">
-                <Button onClick={() => addMoney("twenty")}><Image src="/tjugolapp.jpg" layout="fixed" width={75} height={45} alt="Tjugolapp" quality={50} /></Button>
-                <Button onClick={() => addMoney("ten")}><Image src="/tiokrona.png" layout="fixed" width={35} height={35} alt="Tiokrona" quality={50} /></Button>
-                <Button onClick={() => addMoney("five")}><Image src="/femkrona.png" layout="fixed" width={40} height={40} alt="Femkrona" quality={50} /></Button>
-                <Button onClick={() => checkAnswer("equal")}>Start</Button>
-            </ButtonGroup>
+            <div className="ingamebtnlayout">
+                <Button variant="contained" color="primary" id="ingamebtn" onClick={() => addMoney("twenty")}><Image src="/tjugolapp.jpg" layout="fixed" width={75} height={45} alt="Tjugolapp" quality={50} /></Button>
+                <Button variant="contained" color="primary" id="ingamebtn" onClick={() => addMoney("ten")}><Image src="/tiokrona.png" layout="fixed" width={35} height={35} alt="Tiokrona" quality={50} /></Button>
+                <Button variant="contained" color="primary" id="ingamebtn" onClick={() => addMoney("five")}><Image src="/femkrona.png" layout="fixed" width={40} height={40} alt="Femkrona" quality={50} /></Button>
+                <Button variant="contained" color="primary" id="ingamebtn" onClick={() => checkAnswer("equal")}>Start</Button>
+            </div>
 
             <br />
 
